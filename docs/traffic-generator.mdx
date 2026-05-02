@@ -32,12 +32,17 @@ Pre-built scripts in `/opt/traffic-generator/suites/`:
 
 ## Terraform Variables
 
-| Variable | Required | Default |
-|---|---|---|
-| `subscription_id` | Yes | — |
-| `target_fqdn` | Yes | — (F5 XC load balancer FQDN) |
-| `target_origin_ip` | No | — (direct origin IP for bypass testing) |
-| `tool_tier` | No | `standard` (`standard` or `full`) |
+| Variable | Required | Default | Description |
+|---|---|---|---|
+| `subscription_id` | Yes | — | Azure subscription ID |
+| `target_fqdn` | Yes | — | F5 XC load balancer FQDN to target |
+| `deployer` | No | *(auto from Azure AD)* | Override for deployer identifier |
+| `location` | No | `eastus2` | Azure region |
+| `environment` | No | `lab` | Environment label for resource naming |
+| `vm_size` | No | `Standard_F16s_v2` | Azure VM size |
+| `disk_size_gb` | No | `64` | OS disk size in GB |
+| `target_origin_ip` | No | — | Direct origin IP for bypass testing |
+| `tool_tier` | No | `standard` | `standard` or `full` (includes Metasploit) |
 
 ## Integration
 

@@ -31,12 +31,14 @@ vulnerable web applications.
 
 ## Terraform Variables
 
-| Variable | Required | Default |
-|---|---|---|
-| `subscription_id` | Yes | — |
-| `resource_group_name` | No | `rg-origin-server` |
-| `location` | No | `eastus2` |
-| `vm_size` | No | `Standard_D16s_v3` |
+| Variable | Required | Default | Description |
+|---|---|---|---|
+| `subscription_id` | Yes | — | Azure subscription ID |
+| `deployer` | No | *(auto from Azure AD)* | Override for deployer identifier |
+| `location` | No | `eastus2` | Azure region |
+| `environment` | No | `lab` | Environment label for resource naming |
+| `vm_size` | No | `Standard_D16s_v3` | Azure VM size |
+| `disk_size_gb` | No | `60` | OS disk size in GB |
 
 ## Integration
 

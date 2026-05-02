@@ -31,12 +31,16 @@ TLS/Fingerprint, Bot Detection, Request Tracing, Edge Identity.
 
 ## Terraform Variables
 
-| Variable | Required | Default |
-|---|---|---|
-| `subscription_id` | Yes | — |
-| `origin_server` | Yes | — (origin URL with scheme) |
-| `origin_host` | Yes | — (host:port for NGINX upstream) |
-| `vm_size` | No | `Standard_F4s_v2` |
+| Variable | Required | Default | Description |
+|---|---|---|---|
+| `subscription_id` | Yes | — | Azure subscription ID |
+| `origin_server` | Yes | — | Origin URL with scheme |
+| `origin_host` | Yes | — | Origin host:port for NGINX upstream |
+| `deployer` | No | *(auto from Azure AD)* | Override for deployer identifier |
+| `location` | No | `eastus2` | Azure region |
+| `environment` | No | `lab` | Environment label for resource naming |
+| `vm_size` | No | `Standard_F4s_v2` | Azure VM size |
+| `disk_size_gb` | No | `30` | OS disk size in GB |
 
 ## Integration
 

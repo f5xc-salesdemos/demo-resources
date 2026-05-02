@@ -34,9 +34,11 @@ Every component follows the same Terraform workflow:
 
 1. Clone the component repo
 2. `cd terraform/`
-3. Set required variables (each component documents its own)
+3. Copy `terraform.tfvars.example` to `terraform.tfvars` and set required variables (`subscription_id` is required for all; some components have additional required inputs)
 4. `terraform init && terraform plan && terraform apply`
 5. Verify via the component's health check endpoint
+
+Your deployer identifier is auto-resolved from your Azure AD account and embedded in all resource names (e.g., `rg-origin-server-lab-rmordasiewicz`).
 
 ## Cost Estimates
 
