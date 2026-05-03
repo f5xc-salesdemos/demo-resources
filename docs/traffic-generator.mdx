@@ -1,10 +1,11 @@
 ---
 title: Traffic Generator
-description: Azure Ubuntu 24.04 VM with 50+ security testing tools and 7 pre-built attack suites for generating WAF, API, bot, reconnaissance, SSL, and JavaScript exploit traffic.
+description: Azure Ubuntu 24.04 VM with 50+ security testing tools and 17 traffic suites for generating WAF, API, bot, reconnaissance, SSL, and JavaScript exploit traffic.
 ---
 
 The traffic generator is an Azure Ubuntu 24.04 VM (Standard_F16s_v2) pre-loaded
-with 50+ security testing tools organized into 7 attack suite categories.
+with 50+ security testing tools and 17 traffic suites targeting 9 vulnerable
+applications on the origin server.
 
 ## Tool Categories
 
@@ -16,19 +17,30 @@ with 50+ security testing tools organized into 7 attack suite categories.
 | SSL/TLS | testssl.sh, sslscan | Certificate and cipher analysis |
 | Browser Automation | Playwright, Puppeteer | Headless browser-based attack simulation |
 | Credential Testing | Hydra | Brute-force authentication testing |
+| Load Testing | wrk, hey, vegeta | HTTP load generation and benchmarking |
 | Exploit Frameworks | ZAP, Metasploit (full tier only) | Advanced exploitation |
 
-## Attack Suites
+## Traffic Suites
 
-Pre-built scripts in `/opt/traffic-generator/suites/`:
+17 pre-built suites in `/opt/traffic-generator/suites/`:
 
-- `web-app-attacks` — SQLi, XSS, path traversal against origin apps
-- `api-attacks` — API fuzzing, injection, auth bypass
-- `bot-simulation` — Headless browser and automated scraping patterns
-- `reconnaissance` — Port scanning, service enumeration
+- `api-attacks` — OWASP API Top 10 against VAmPI
+- `bot-simulation` — Headless browser credential stuffing and scraping
+- `cdn-load-testing` — Cache behavior, throughput, and keepalive benchmarks
+- `crapi-exploits` — BOLA, OTP brute-force, mass assignment against crAPI
+- `csd-demo-attacks` — Magecart skimmer, formjacker, keylogger, cryptominer
+- `dvga-exploits` — GraphQL batch queries, recursion, injection against DVGA
+- `dvwa-exploits` — OWASP Top 10 chains against DVWA
+- `javascript-exploits` — Client-side injection and DOM manipulation
+- `juice-shop-exploits` — SQLi, XSS, IDOR against Juice Shop
+- `mitre-attack` — MITRE ATT&CK framework tactic mapping
+- `owasp-scanning` — ZAP, Nikto, Nuclei comprehensive scanning
+- `performance-testing` — Concurrency ramp, spike, endurance, breakpoint
+- `reconnaissance` — Nmap, Masscan, Gobuster enumeration
+- `restaurant-exploits` — OWASP API 2023 against RESTaurant
 - `ssl-scanning` — TLS configuration auditing
-- `javascript-exploits` — Client-side attack payloads
 - `traffic-generation` — Legitimate baseline traffic
+- `web-app-attacks` — SQLi, XSS, command injection, path traversal
 
 ## Terraform Variables
 
