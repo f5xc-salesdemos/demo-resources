@@ -40,12 +40,22 @@ Every component follows the same Terraform workflow:
 
 Your deployer identifier is auto-resolved from your Azure AD account and embedded in all resource names (e.g., `rg-origin-server-lab-rmordasiewicz`).
 
-## Azure Resources
+## Cross-Component Integration
 
-| Component | VM Size |
-|---|---|
-| Origin Server | Standard_D16s_v3 (16 vCPU, 64 GiB) |
-| Traffic Generator | Standard_F16s_v2 (16 vCPU, compute) |
-| CDN Simulator | Standard_F4s_v2 (4 vCPU, compute) |
+Components combine to create complete demo environments:
+
+```
+Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Server
+                                     ▲
+                               CDN Simulator
+```
+
+**Deployment order:**
+
+1. **Origin server** — deploy first, it hosts the applications that all other components target
+2. **F5 XC HTTP load balancer** — configure an origin pool pointing to the origin server's public IP, then create an HTTP load balancer with WAF, Bot Defense, API Security, or Client-Side Defense policies
+3. **Traffic generator** and/or **CDN simulator** — deploy last, pointing at the F5 XC load balancer FQDN
+
+Each component's terraform variables reference the outputs of previously deployed components. See the component documentation for specific variable requirements.
 
 Use the [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/) for current cost estimates. Run `terraform destroy` when the lab is idle to stop charges.

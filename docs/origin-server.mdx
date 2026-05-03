@@ -1,46 +1,18 @@
 ---
 title: Origin Server
-description: Ubuntu 24.04 Azure VM running nginx reverse proxy to 41 Docker containers across 9 vulnerable web applications for WAF, API security, bot defense, and client-side defense testing.
+description: Azure VM hosting vulnerable web applications for WAF, API security, bot defense, and client-side defense testing.
 ---
 
-The origin server is an Ubuntu 24.04 Azure VM (Standard_D16s_v3) that runs an
-nginx reverse proxy distributing traffic to 41 Docker containers across 9
-vulnerable web applications.
+The origin server is an Azure VM that hosts vulnerable web applications behind
+an nginx reverse proxy. It provides targets for demonstrating F5 Distributed
+Cloud security features.
 
-## Applications
+## F5 XC Features Validated
 
-| Application | Path | Purpose |
-|---|---|---|
-| Juice Shop | `/juice-shop` | OWASP flagship, general web app attacks |
-| DVWA | `/dvwa` | WAF testing with configurable security levels |
-| VAmPI | `/vampi` | REST API vulnerabilities |
-| httpbin | `/httpbin` | HTTP request/response diagnostics |
-| whoami | `/whoami` | Request echo and header inspection |
-| CSD Demo | `/csd-demo` | Client-side defense JavaScript injection |
-| DVGA | `/dvga` | GraphQL API vulnerabilities |
-| RESTaurant | `/restaurant` | REST API with PostgreSQL backend |
-| crAPI | `:8888` | 7-microservice API security challenge |
+- **Web Application Firewall** — SQL injection, XSS, command injection, path traversal
+- **API Security** — REST and GraphQL API vulnerabilities, OWASP API Top 10
+- **Bot Defense** — credential stuffing targets, scraping endpoints
+- **Client-Side Defense** — JavaScript injection, Magecart-style attacks
 
-## Architecture
-
-- **nginx** reverse proxy with `reuseport`, sticky sessions, and proxy cache
-- **4 instances** per application for load balancing
-- **MariaDB 10.11** backend for DVWA
-- **PostgreSQL 15.4** backend for RESTaurant
-- **MongoDB + Mailhog** for crAPI microservices
-
-## Terraform Variables
-
-| Variable | Required | Default | Description |
-|---|---|---|---|
-| `subscription_id` | Yes | — | Azure subscription ID |
-| `deployer` | No | *(auto from Azure AD)* | Override for deployer identifier |
-| `location` | No | `eastus2` | Azure region |
-| `environment` | No | `lab` | Environment label for resource naming |
-| `vm_size` | No | `Standard_D16s_v3` | Azure VM size |
-| `disk_size_gb` | No | `60` | OS disk size in GB |
-
-## Integration
-
-Point an F5 XC origin pool at the VM's public IP. Configure HTTP load balancer
-with path-based routing to expose individual applications through XC.
+See the [Origin Server documentation](https://f5xc-salesdemos.github.io/origin-server/)
+for architecture, applications, terraform variables, and deployment details.

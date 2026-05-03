@@ -1,63 +1,19 @@
 ---
 title: Traffic Generator
-description: Azure Ubuntu 24.04 VM with 50+ security testing tools and 17 traffic suites for generating WAF, API, bot, reconnaissance, SSL, and JavaScript exploit traffic.
+description: Azure VM generating attack traffic, reconnaissance, and bot simulation against F5 XC protected applications.
 ---
 
-The traffic generator is an Azure Ubuntu 24.04 VM (Standard_F16s_v2) pre-loaded
-with 50+ security testing tools and 17 traffic suites targeting 9 vulnerable
-applications on the origin server.
+The traffic generator is an Azure VM that produces attack traffic, reconnaissance
+scans, and bot simulation against F5 Distributed Cloud HTTP load balancers. It
+validates that WAF policies, Bot Defense, API Security, and Client-Side Defense
+are correctly configured.
 
-## Tool Categories
+## F5 XC Features Validated
 
-| Category | Tools | Purpose |
-|---|---|---|
-| Web Testing | Nikto, SQLMap, Gobuster, Nuclei, curl | Web application vulnerability scanning |
-| Network Analysis | Nmap, tcpdump, Wireshark CLI | Network reconnaissance and packet analysis |
-| MITM / Proxy | mitmproxy | Traffic interception and modification |
-| SSL/TLS | testssl.sh, sslscan | Certificate and cipher analysis |
-| Browser Automation | Playwright, Puppeteer | Headless browser-based attack simulation |
-| Credential Testing | Hydra | Brute-force authentication testing |
-| Load Testing | wrk, hey, vegeta | HTTP load generation and benchmarking |
-| Exploit Frameworks | ZAP, Metasploit (full tier only) | Advanced exploitation |
+- **Web Application Firewall** — SQL injection, XSS, command injection, path traversal payloads
+- **Bot Defense** — headless browser automation, credential stuffing, rapid crawling
+- **API Security** — OWASP API Top 10 attacks, GraphQL abuse, parameter fuzzing
+- **Client-Side Defense** — Magecart-style skimmer injection, DOM manipulation
 
-## Traffic Suites
-
-17 pre-built suites in `/opt/traffic-generator/suites/`:
-
-- `api-attacks` — OWASP API Top 10 against VAmPI
-- `bot-simulation` — Headless browser credential stuffing and scraping
-- `cdn-load-testing` — Cache behavior, throughput, and keepalive benchmarks
-- `crapi-exploits` — BOLA, OTP brute-force, mass assignment against crAPI
-- `csd-demo-attacks` — Magecart skimmer, formjacker, keylogger, cryptominer
-- `dvga-exploits` — GraphQL batch queries, recursion, injection against DVGA
-- `dvwa-exploits` — OWASP Top 10 chains against DVWA
-- `javascript-exploits` — Client-side injection and DOM manipulation
-- `juice-shop-exploits` — SQLi, XSS, IDOR against Juice Shop
-- `mitre-attack` — MITRE ATT&CK framework tactic mapping
-- `owasp-scanning` — ZAP, Nikto, Nuclei comprehensive scanning
-- `performance-testing` — Concurrency ramp, spike, endurance, breakpoint
-- `reconnaissance` — Nmap, Masscan, Gobuster enumeration
-- `restaurant-exploits` — OWASP API 2023 against RESTaurant
-- `ssl-scanning` — TLS configuration auditing
-- `traffic-generation` — Legitimate baseline traffic
-- `web-app-attacks` — SQLi, XSS, command injection, path traversal
-
-## Terraform Variables
-
-| Variable | Required | Default | Description |
-|---|---|---|---|
-| `subscription_id` | Yes | — | Azure subscription ID |
-| `target_fqdn` | Yes | — | F5 XC load balancer FQDN to target |
-| `deployer` | No | *(auto from Azure AD)* | Override for deployer identifier |
-| `location` | No | `eastus2` | Azure region |
-| `environment` | No | `lab` | Environment label for resource naming |
-| `vm_size` | No | `Standard_F16s_v2` | Azure VM size |
-| `disk_size_gb` | No | `64` | OS disk size in GB |
-| `target_origin_ip` | No | — | Direct origin IP for bypass testing |
-| `tool_tier` | No | `standard` | `standard` or `full` (includes Metasploit) |
-
-## Integration
-
-Deploy after the origin server and F5 XC load balancer are configured. Set
-`target_fqdn` to the XC load balancer FQDN. Use `runner.sh` to orchestrate
-attack suites.
+See the [Traffic Generator documentation](https://f5xc-salesdemos.github.io/traffic-generator/)
+for tool catalog, traffic suites, terraform variables, and deployment details.

@@ -1,49 +1,19 @@
 ---
 title: CDN Simulator
-description: Azure Ubuntu 24.04 VM running NGINX as a CDN edge node simulator with 67+ vendor-specific headers, cache behavior simulation, and origin pull.
+description: Azure VM simulating CDN edge behavior with multi-vendor header injection for CDN integration demos.
 ---
 
-The CDN simulator is an Azure Ubuntu 24.04 VM (Standard_F4s_v2) running NGINX
-configured to behave like a CDN edge node, injecting vendor-specific headers and
-simulating cache behavior.
+The CDN simulator is an Azure VM running NGINX configured to behave like a CDN
+edge node. It injects realistic vendor-specific headers and simulates cache
+behavior for CDN integration demos with F5 Distributed Cloud.
 
-## Simulated CDN Features
+## Simulated Vendors
 
-- **Edge caching** with HIT/MISS/BYPASS/EXPIRED status reporting
-- **Origin pull** to upstream origin servers
-- **TLS termination** at the edge
-- **Cache-Control header** respect and enforcement
+- Akamai
+- Cloudflare
+- Amazon CloudFront
+- Fastly
+- Azure Front Door
 
-## Vendor Headers
-
-67+ request and response headers simulating behavior from:
-
-| Vendor | Header Examples |
-|---|---|
-| Akamai | `X-Akamai-Transformed`, `Akamai-Origin-Hop` |
-| Cloudflare | `CF-Ray`, `CF-IPCountry`, `CF-Connecting-IP` |
-| CloudFront | `X-Amz-Cf-Id`, `X-Amz-Cf-Pop` |
-| Fastly | `X-Served-By`, `X-Cache`, `X-Timer` |
-| Azure Front Door | `X-Azure-Ref`, `X-FD-HealthProbe` |
-
-Header categories include: Client IP, Geolocation, Device Detection,
-TLS/Fingerprint, Bot Detection, Request Tracing, Edge Identity.
-
-## Terraform Variables
-
-| Variable | Required | Default | Description |
-|---|---|---|---|
-| `subscription_id` | Yes | — | Azure subscription ID |
-| `origin_server` | Yes | — | Origin URL with scheme |
-| `origin_host` | Yes | — | Origin host:port for NGINX upstream |
-| `deployer` | No | *(auto from Azure AD)* | Override for deployer identifier |
-| `location` | No | `eastus2` | Azure region |
-| `environment` | No | `lab` | Environment label for resource naming |
-| `vm_size` | No | `Standard_F4s_v2` | Azure VM size |
-| `disk_size_gb` | No | `30` | OS disk size in GB |
-
-## Integration
-
-Deploy between clients and the origin server (or between clients and F5 XC).
-Point `origin_server` at either the origin VM's IP or the F5 XC VIP to test
-CDN-in-front-of-WAF scenarios.
+See the [CDN Simulator documentation](https://f5xc-salesdemos.github.io/cdn-simulator/)
+for nginx configuration, vendor headers, terraform variables, and deployment details.
