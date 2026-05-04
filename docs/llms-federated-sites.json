@@ -2,12 +2,12 @@
   {
     "label": "Origin Server",
     "url": "https://f5xc-salesdemos.github.io/origin-server/llms.txt",
-    "description": "Ubuntu 24.04 origin server with 9 vulnerable web applications for F5 XC demo environments"
+    "description": "Azure VM hosting vulnerable web applications for WAF, API security, bot defense, and client-side defense testing"
   },
   {
     "label": "Traffic Generator",
     "url": "https://f5xc-salesdemos.github.io/traffic-generator/llms.txt",
-    "description": "Azure Ubuntu 24.04 VM with 50+ security tools and attack suites for F5 XC demo traffic generation"
+    "description": "Azure VM generating attack traffic, reconnaissance, and bot simulation against F5 XC protected applications"
   },
   {
     "label": "CDN Simulator",
