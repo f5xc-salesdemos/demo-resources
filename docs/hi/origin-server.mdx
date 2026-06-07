@@ -1,0 +1,20 @@
+---
+title: Origin Server
+description: >-
+  WAF, API सुरक्षा, बॉट डिफेंस, और क्लाइंट-साइड डिफेंस परीक्षण के लिए कमजोर वेब
+  अनुप्रयोगों को होस्ट करने वाला Azure VM।
+i18n:
+  sourceHash: 659623ed22bd
+  translator: machine
+---
+
+ऑरिजिन सर्वर एक Azure VM है जो nginx रिवर्स प्रॉक्सी के पीछे कमजोर वेब अनुप्रयोगों को होस्ट करता है। यह F5 Distributed Cloud सुरक्षा सुविधाओं को प्रदर्शित करने के लिए लक्ष्य प्रदान करता है।
+
+## सत्यापित F5 XC सुविधाएँ
+
+- **Web Application Firewall** — SQL इंजेक्शन, XSS, कमांड इंजेक्शन, पाथ ट्रैवर्सल
+- **API Security** — REST और GraphQL API कमजोरियाँ, OWASP API Top 10
+- **Bot Defense** — क्रेडेंशियल स्टफिंग लक्ष्य, स्क्रैपिंग एंडपॉइंट्स
+- **Client-Side Defense** — JavaScript इंजेक्शन, Magecart-शैली के हमले
+
+आर्किटेक्चर, अनुप्रयोगों, terraform वेरिएबल्स, और डिप्लॉयमेंट विवरण के लिए [Origin Server दस्तावेज़ीकरण](https://f5xc-salesdemos.github.io/origin-server/) देखें।

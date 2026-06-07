@@ -1,0 +1,59 @@
+---
+title: 개요
+description: '데모 리소스의 정의, 컴포넌트 선택 방법, 배포를 위한 공통 Azure 사전 요구사항에 대한 설명입니다.'
+i18n:
+  sourceHash: 7388ef989783
+  translator: machine
+---
+
+데모 리소스는 Terraform을 통해 배포할 수 있는 사전 구성된 Azure 가상 머신입니다.
+각 컴포넌트는 독립형 VM으로, 첫 부팅 시 cloud-init을 통해 전용 소프트웨어가 설치 및 구성됩니다.
+
+## 컴포넌트 선택
+
+컴포넌트는 구성 요소입니다. 데모에 필요한 것에 따라 선택하십시오:
+
+- **오리진 서버**는 F5 XC 보안 기능의 대상이 되는 취약한 웹 애플리케이션을 제공합니다. 대부분의 데모에 필요합니다.
+- **트래픽 생성기**는 데모 환경에 대해 공격 트래픽과 정상 트래픽을 생성합니다. WAF 효과, 봇 탐지 또는 API 보호를 시연할 때 필요합니다.
+- **CDN 시뮬레이터**는 클라이언트와 오리진 사이에 NGINX 기반 CDN 엣지를 배치하여 벤더별 헤더를 삽입합니다. CDN 통합 데모에 사용됩니다.
+
+## 공통 사전 요구사항
+
+모든 컴포넌트에는 다음이 필요합니다:
+
+- 기여자 액세스 권한이 있는 Azure 구독
+- Terraform 1.5 이상
+- Azure CLI 인증 완료 (`az login`)
+- SSH 키 페어 (기본 경로 `~/.ssh/id_ed25519.pub`)
+
+## 배포 패턴
+
+모든 컴포넌트는 동일한 Terraform 워크플로를 따릅니다:
+
+1. 컴포넌트 저장소를 클론합니다
+2. `cd terraform/`
+3. `terraform.tfvars.example`을 `terraform.tfvars`로 복사하고 필수 변수를 설정합니다 (`subscription_id`는 모든 컴포넌트에 필수이며, 일부 컴포넌트에는 추가 필수 입력값이 있습니다)
+4. `terraform init && terraform plan && terraform apply`
+5. 컴포넌트의 헬스 체크 엔드포인트를 통해 확인합니다
+
+배포자 식별자는 Azure AD 계정에서 자동으로 확인되며 모든 리소스 이름에 포함됩니다 (예: `rg-origin-server-lab-rmordasiewicz`).
+
+## 컴포넌트 간 통합
+
+컴포넌트를 결합하여 완전한 데모 환경을 구성할 수 있습니다:
+
+```
+Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Server
+                                     ▲
+                               CDN Simulator
+```
+
+**배포 순서:**
+
+1. **오리진 서버** — 먼저 배포합니다. 다른 모든 컴포넌트가 대상으로 하는 애플리케이션을 호스팅합니다
+2. **F5 XC HTTP 로드 밸런서** — 오리진 서버의 공용 IP를 가리키는 오리진 풀을 구성한 다음, WAF, Bot Defense, API Security 또는 Client-Side Defense 정책이 적용된 HTTP 로드 밸런서를 생성합니다
+3. **트래픽 생성기** 및/또는 **CDN 시뮬레이터** — 마지막에 배포하며, F5 XC 로드 밸런서 FQDN을 가리키도록 설정합니다
+
+각 컴포넌트의 Terraform 변수는 이전에 배포한 컴포넌트의 출력값을 참조합니다. 구체적인 변수 요구사항은 컴포넌트 문서를 참조하십시오.
+
+현재 비용 추정치는 [Azure 가격 계산기](https://azure.microsoft.com/en-us/pricing/calculator/)를 사용하십시오. 실습 환경을 사용하지 않을 때는 `terraform destroy`를 실행하여 과금을 중단하십시오.

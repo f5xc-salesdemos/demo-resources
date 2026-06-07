@@ -1,0 +1,24 @@
+---
+title: Generador de Tráfico
+description: >-
+  VM de Azure que genera tráfico de ataque, reconocimiento y simulación de bots
+  contra aplicaciones protegidas por F5 XC.
+i18n:
+  sourceHash: ee5e7f90e7ea
+  translator: machine
+---
+
+El generador de tráfico es una VM de Azure que produce tráfico de ataque, escaneos
+de reconocimiento y simulación de bots contra los balanceadores de carga HTTP de F5 Distributed Cloud. Valida
+que las políticas de WAF, Bot Defense, API Security y Client-Side Defense
+estén correctamente configuradas.
+
+## Características de F5 XC Validadas
+
+- **Web Application Firewall** — Inyección SQL, XSS, inyección de comandos, payloads de recorrido de rutas
+- **Bot Defense** — Automatización de navegador headless, credential stuffing, rastreo rápido
+- **API Security** — Ataques OWASP API Top 10, abuso de GraphQL, fuzzing de parámetros
+- **Client-Side Defense** — Inyección de skimmers estilo Magecart, manipulación del DOM
+
+Consulte la [documentación del Generador de Tráfico](https://f5xc-salesdemos.github.io/traffic-generator/)
+para obtener el catálogo de herramientas, suites de tráfico, variables de terraform y detalles de despliegue.

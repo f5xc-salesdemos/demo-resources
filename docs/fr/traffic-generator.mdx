@@ -1,0 +1,21 @@
+---
+title: Générateur de trafic
+description: >-
+  Machine virtuelle Azure générant du trafic d'attaque, de la reconnaissance et
+  de la simulation de bots contre les applications protégées par F5 XC.
+i18n:
+  sourceHash: ee5e7f90e7ea
+  translator: machine
+---
+
+Le générateur de trafic est une machine virtuelle Azure qui produit du trafic d'attaque, des scans de reconnaissance et de la simulation de bots contre les répartiteurs de charge HTTP F5 Distributed Cloud. Il valide que les politiques WAF, Bot Defense, API Security et Client-Side Defense sont correctement configurées.
+
+## Fonctionnalités F5 XC validées
+
+- **Web Application Firewall** — injection SQL, XSS, injection de commandes, charges utiles de traversée de chemin
+- **Bot Defense** — automatisation de navigateur headless, bourrage d'identifiants, exploration rapide
+- **API Security** — attaques OWASP API Top 10, abus GraphQL, fuzzing de paramètres
+- **Client-Side Defense** — injection de skimmer de type Magecart, manipulation du DOM
+
+Consultez la [documentation du générateur de trafic](https://f5xc-salesdemos.github.io/traffic-generator/)
+pour le catalogue d'outils, les suites de trafic, les variables terraform et les détails de déploiement.

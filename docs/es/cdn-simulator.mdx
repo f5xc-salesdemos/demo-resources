@@ -1,0 +1,24 @@
+---
+title: CDN Simulator
+description: >-
+  VM de Azure que simula el comportamiento de borde CDN con inyección de
+  encabezados multi-proveedor para demostraciones de integración CDN.
+i18n:
+  sourceHash: a6b0490fd7e8
+  translator: machine
+---
+
+El simulador CDN es una VM de Azure que ejecuta NGINX configurado para comportarse como un
+nodo de borde CDN. Inyecta encabezados realistas específicos de cada proveedor y simula el comportamiento
+de caché para demostraciones de integración CDN con F5 Distributed Cloud.
+
+## Proveedores Simulados
+
+- Akamai
+- Cloudflare
+- Amazon CloudFront
+- Fastly
+- Azure Front Door
+
+Consulte la [documentación del CDN Simulator](https://f5xc-salesdemos.github.io/cdn-simulator/)
+para la configuración de nginx, encabezados de proveedores, variables de terraform y detalles de despliegue.

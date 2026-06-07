@@ -1,0 +1,60 @@
+---
+title: 概觀
+description: 什麼是示範資源、如何選擇元件，以及部署所需的共用 Azure 先決條件。
+i18n:
+  sourceHash: 7388ef989783
+  translator: machine
+---
+
+示範資源是可透過 Terraform 部署的預先配置 Azure 虛擬機器。
+每個元件都是獨立的 VM，內含專門建置的軟體，並在首次啟動時透過
+cloud-init 完成安裝與配置。
+
+## 選擇元件
+
+元件是建構區塊。根據您的示範需求來選擇它們：
+
+- **來源伺服器**提供具有弱點的 Web 應用程式，作為 F5 XC 安全功能的攻擊目標。大多數示範都需要此元件。
+- **流量產生器**針對您的示範環境產生攻擊流量與合法流量。在展示 WAF 效能、Bot 偵測或 API 防護時需要此元件。
+- **CDN 模擬器**在用戶端與來源之間放置一個基於 NGINX 的 CDN 邊緣節點，注入供應商專屬的標頭。用於 CDN 整合示範。
+
+## 共用先決條件
+
+所有元件都需要：
+
+- 具有參與者存取權的 Azure 訂閱
+- Terraform 1.5 或更新版本
+- 已驗證的 Azure CLI（`az login`）
+- SSH 金鑰對（預設路徑 `~/.ssh/id_ed25519.pub`）
+
+## 部署模式
+
+每個元件都遵循相同的 Terraform 工作流程：
+
+1. 複製元件儲存庫
+2. `cd terraform/`
+3. 將 `terraform.tfvars.example` 複製為 `terraform.tfvars` 並設定必要變數（所有元件都需要 `subscription_id`；部分元件有額外的必要輸入）
+4. `terraform init && terraform plan && terraform apply`
+5. 透過元件的健康檢查端點進行驗證
+
+您的部署者識別碼會從您的 Azure AD 帳戶自動解析，並嵌入所有資源名稱中（例如 `rg-origin-server-lab-rmordasiewicz`）。
+
+## 跨元件整合
+
+元件可以組合在一起建立完整的示範環境：
+
+```
+Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Server
+                                     ▲
+                               CDN Simulator
+```
+
+**部署順序：**
+
+1. **來源伺服器** — 首先部署，它承載所有其他元件所針對的應用程式
+2. **F5 XC HTTP 負載平衡器** — 配置指向來源伺服器公用 IP 的來源池，然後建立具有 WAF、Bot Defense、API Security 或 Client-Side Defense 原則的 HTTP 負載平衡器
+3. **流量產生器**和/或 **CDN 模擬器** — 最後部署，指向 F5 XC 負載平衡器的 FQDN
+
+每個元件的 Terraform 變數會參考先前已部署元件的輸出。請參閱元件文件以了解特定的變數需求。
+
+使用 [Azure 定價計算機](https://azure.microsoft.com/en-us/pricing/calculator/) 取得目前的費用估算。實驗室閒置時請執行 `terraform destroy` 以停止計費。

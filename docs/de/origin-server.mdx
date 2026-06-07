@@ -1,0 +1,22 @@
+---
+title: Origin Server
+description: >-
+  Azure-VM, die verwundbare Webanwendungen für WAF-, API-Sicherheits-,
+  Bot-Abwehr- und Client-Side-Defense-Tests hostet.
+i18n:
+  sourceHash: 659623ed22bd
+  translator: machine
+---
+
+Der Origin Server ist eine Azure-VM, die verwundbare Webanwendungen hinter
+einem nginx-Reverse-Proxy hostet. Er stellt Ziele bereit, um die Sicherheitsfunktionen
+von F5 Distributed Cloud zu demonstrieren.
+
+## Validierte F5 XC-Funktionen
+
+- **Web Application Firewall** — SQL-Injection, XSS, Command Injection, Path Traversal
+- **API-Sicherheit** — REST- und GraphQL-API-Schwachstellen, OWASP API Top 10
+- **Bot-Abwehr** — Credential-Stuffing-Ziele, Scraping-Endpunkte
+- **Client-Side Defense** — JavaScript-Injection, Magecart-artige Angriffe
+
+Weitere Informationen zu Architektur, Anwendungen, Terraform-Variablen und Bereitstellungsdetails finden Sie in der [Origin Server-Dokumentation](https://f5xc-salesdemos.github.io/origin-server/).

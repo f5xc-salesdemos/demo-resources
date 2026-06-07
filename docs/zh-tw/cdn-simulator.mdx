@@ -1,0 +1,19 @@
+---
+title: CDN 模擬器
+description: Azure VM 模擬 CDN 邊緣行為，透過多廠商標頭注入進行 CDN 整合展示。
+i18n:
+  sourceHash: a6b0490fd7e8
+  translator: machine
+---
+
+CDN 模擬器是一台執行 NGINX 的 Azure VM，設定為模擬 CDN 邊緣節點的行為。它會注入真實的廠商特定標頭，並模擬快取行為，用於與 F5 Distributed Cloud 的 CDN 整合展示。
+
+## 模擬的廠商
+
+- Akamai
+- Cloudflare
+- Amazon CloudFront
+- Fastly
+- Azure Front Door
+
+請參閱 [CDN 模擬器文件](https://f5xc-salesdemos.github.io/cdn-simulator/)，了解 nginx 設定、廠商標頭、terraform 變數及部署詳情。

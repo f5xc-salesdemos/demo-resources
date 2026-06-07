@@ -1,0 +1,20 @@
+---
+title: Traffic-Generator
+description: >-
+  Azure-VM, die Angriffsverkehr, Aufklärungsscans und Bot-Simulation gegen durch
+  F5 XC geschützte Anwendungen erzeugt.
+i18n:
+  sourceHash: ee5e7f90e7ea
+  translator: machine
+---
+
+Der Traffic-Generator ist eine Azure-VM, die Angriffsverkehr, Aufklärungsscans und Bot-Simulation gegen F5 Distributed Cloud HTTP Load Balancer erzeugt. Er validiert, dass WAF-Richtlinien, Bot Defense, API Security und Client-Side Defense korrekt konfiguriert sind.
+
+## Validierte F5 XC-Funktionen
+
+- **Web Application Firewall** — SQL-Injection, XSS, Command Injection, Path-Traversal-Payloads
+- **Bot Defense** — Headless-Browser-Automatisierung, Credential Stuffing, schnelles Crawling
+- **API Security** — OWASP API Top 10-Angriffe, GraphQL-Missbrauch, Parameter-Fuzzing
+- **Client-Side Defense** — Magecart-ähnliche Skimmer-Injection, DOM-Manipulation
+
+Siehe die [Traffic-Generator-Dokumentation](https://f5xc-salesdemos.github.io/traffic-generator/) für den Tool-Katalog, Traffic-Suites, Terraform-Variablen und Bereitstellungsdetails.

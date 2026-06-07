@@ -1,0 +1,65 @@
+---
+title: ภาพรวม
+description: >-
+  ทรัพยากรสาธิตคืออะไร วิธีเลือกคอมโพเนนต์ และข้อกำหนดเบื้องต้นของ Azure
+  ที่ใช้ร่วมกันสำหรับการ deploy
+i18n:
+  sourceHash: 7388ef989783
+  translator: machine
+---
+
+ทรัพยากรสาธิตคือ Azure virtual machines ที่กำหนดค่าไว้ล่วงหน้าซึ่งสามารถ deploy ผ่าน Terraform ได้
+แต่ละคอมโพเนนต์เป็น VM แบบ standalone ที่มีซอฟต์แวร์เฉพาะทางติดตั้งและกำหนดค่า
+ผ่าน cloud-init เมื่อบูตครั้งแรก
+
+## การเลือกคอมโพเนนต์
+
+คอมโพเนนต์เป็นส่วนประกอบพื้นฐาน เลือกตามความต้องการของการสาธิตของคุณ:
+
+- **Origin server** ให้บริการเว็บแอปพลิเคชันที่มีช่องโหว่ซึ่งทำหน้าที่เป็นเป้าหมายสำหรับ
+  ฟีเจอร์ด้านความปลอดภัยของ F5 XC การสาธิตส่วนใหญ่ต้องการสิ่งนี้
+- **Traffic generator** สร้างทราฟฟิกการโจมตีและทราฟฟิกปกติไปยังสภาพแวดล้อมสาธิตของคุณ
+  จำเป็นเมื่อสาธิตประสิทธิภาพของ WAF การตรวจจับบอท หรือการป้องกัน API
+- **CDN simulator** วาง CDN edge ที่ใช้ NGINX ระหว่างไคลเอนต์และ origin
+  โดยแทรก header เฉพาะของผู้ให้บริการ ใช้สำหรับการสาธิตการรวม CDN
+
+## ข้อกำหนดเบื้องต้นที่ใช้ร่วมกัน
+
+คอมโพเนนต์ทั้งหมดต้องการ:
+
+- Azure subscription ที่มีสิทธิ์ contributor access
+- Terraform 1.5 หรือใหม่กว่า
+- Azure CLI ที่ผ่านการยืนยันตัวตนแล้ว (`az login`)
+- คู่คีย์ SSH (เส้นทางเริ่มต้น `~/.ssh/id_ed25519.pub`)
+
+## รูปแบบการ Deploy
+
+ทุกคอมโพเนนต์ใช้เวิร์กโฟลว์ Terraform เดียวกัน:
+
+1. Clone repo ของคอมโพเนนต์
+2. `cd terraform/`
+3. คัดลอก `terraform.tfvars.example` เป็น `terraform.tfvars` และตั้งค่าตัวแปรที่จำเป็น (`subscription_id` จำเป็นสำหรับทุกคอมโพเนนต์ บางคอมโพเนนต์มี input ที่จำเป็นเพิ่มเติม)
+4. `terraform init && terraform plan && terraform apply`
+5. ตรวจสอบผ่าน health check endpoint ของคอมโพเนนต์
+
+ตัวระบุผู้ deploy ของคุณจะถูกแก้ไขอัตโนมัติจากบัญชี Azure AD ของคุณและฝังอยู่ในชื่อทรัพยากรทั้งหมด (เช่น `rg-origin-server-lab-rmordasiewicz`)
+
+## การรวมข้ามคอมโพเนนต์
+
+คอมโพเนนต์ต่างๆ รวมกันเพื่อสร้างสภาพแวดล้อมสาธิตที่สมบูรณ์:
+
+```
+Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Server
+                                     ▲
+                               CDN Simulator
+```
+
+**ลำดับการ Deploy:**
+
+1. **Origin server** — deploy ก่อน เนื่องจากเป็นที่โฮสต์แอปพลิเคชันที่คอมโพเนนต์อื่นทั้งหมดใช้เป็นเป้าหมาย
+2. **F5 XC HTTP load balancer** — กำหนดค่า origin pool ชี้ไปยัง public IP ของ origin server จากนั้นสร้าง HTTP load balancer พร้อมนโยบาย WAF, Bot Defense, API Security หรือ Client-Side Defense
+3. **Traffic generator** และ/หรือ **CDN simulator** — deploy เป็นลำดับสุดท้าย โดยชี้ไปยัง FQDN ของ F5 XC load balancer
+
+ตัวแปร terraform ของแต่ละคอมโพเนนต์อ้างอิง output ของคอมโพเนนต์ที่ deploy ไปก่อนหน้า ดูเอกสารประกอบของคอมโพเนนต์สำหรับข้อกำหนดตัวแปรเฉพาะ
+
+ใช้ [เครื่องคำนวณราคา Azure](https://azure.microsoft.com/en-us/pricing/calculator/) สำหรับการประมาณค่าใช้จ่ายปัจจุบัน เรียกใช้ `terraform destroy` เมื่อไม่ได้ใช้งาน lab เพื่อหยุดค่าใช้จ่าย

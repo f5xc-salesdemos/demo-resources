@@ -1,0 +1,18 @@
+---
+title: 流量產生器
+description: Azure VM 針對受 F5 XC 保護的應用程式產生攻擊流量、偵察掃描及機器人模擬。
+i18n:
+  sourceHash: ee5e7f90e7ea
+  translator: machine
+---
+
+流量產生器是一台 Azure VM，針對 F5 Distributed Cloud HTTP 負載平衡器產生攻擊流量、偵察掃描及機器人模擬。它用於驗證 WAF 策略、Bot Defense、API Security 及 Client-Side Defense 是否正確配置。
+
+## 驗證的 F5 XC 功能
+
+- **Web Application Firewall** — SQL 注入、XSS、命令注入、路徑遍歷攻擊載荷
+- **Bot Defense** — 無頭瀏覽器自動化、憑證填充攻擊、快速爬取
+- **API Security** — OWASP API Top 10 攻擊、GraphQL 濫用、參數模糊測試
+- **Client-Side Defense** — Magecart 風格的側錄程式注入、DOM 操作
+
+請參閱 [流量產生器文件](https://f5xc-salesdemos.github.io/traffic-generator/) 以了解工具目錄、流量套件、terraform 變數及部署詳情。

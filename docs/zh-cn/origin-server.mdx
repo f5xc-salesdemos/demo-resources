@@ -1,0 +1,18 @@
+---
+title: 源服务器
+description: 托管易受攻击 Web 应用程序的 Azure 虚拟机，用于 WAF、API 安全、Bot 防御和客户端防御测试。
+i18n:
+  sourceHash: 659623ed22bd
+  translator: machine
+---
+
+源服务器是一台 Azure 虚拟机，在 nginx 反向代理后托管易受攻击的 Web 应用程序。它为演示 F5 Distributed Cloud 安全功能提供攻击目标。
+
+## 验证的 F5 XC 功能
+
+- **Web 应用程序防火墙** — SQL 注入、XSS、命令注入、路径遍历
+- **API 安全** — REST 和 GraphQL API 漏洞、OWASP API Top 10
+- **Bot 防御** — 凭证填充目标、抓取端点
+- **客户端防御** — JavaScript 注入、Magecart 风格攻击
+
+请参阅[源服务器文档](https://f5xc-salesdemos.github.io/origin-server/)了解架构、应用程序、Terraform 变量和部署详情。

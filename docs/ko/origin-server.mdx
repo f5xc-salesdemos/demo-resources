@@ -1,0 +1,18 @@
+---
+title: Origin Server
+description: 'WAF, API 보안, 봇 방어, 클라이언트 측 방어 테스트를 위한 취약한 웹 애플리케이션을 호스팅하는 Azure VM.'
+i18n:
+  sourceHash: 659623ed22bd
+  translator: machine
+---
+
+오리진 서버는 nginx 리버스 프록시 뒤에서 취약한 웹 애플리케이션을 호스팅하는 Azure VM입니다. F5 Distributed Cloud 보안 기능을 시연하기 위한 대상을 제공합니다.
+
+## 검증된 F5 XC 기능
+
+- **웹 애플리케이션 방화벽** — SQL 인젝션, XSS, 명령어 인젝션, 경로 탐색
+- **API 보안** — REST 및 GraphQL API 취약점, OWASP API Top 10
+- **봇 방어** — 크리덴셜 스터핑 대상, 스크래핑 엔드포인트
+- **클라이언트 측 방어** — JavaScript 인젝션, Magecart 스타일 공격
+
+아키텍처, 애플리케이션, Terraform 변수 및 배포 세부 정보는 [Origin Server 문서](https://f5xc-salesdemos.github.io/origin-server/)를 참조하십시오.

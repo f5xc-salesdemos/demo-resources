@@ -1,0 +1,19 @@
+---
+title: CDN シミュレーター
+description: CDN統合デモ用のマルチベンダーヘッダー挿入機能を備えた、CDNエッジ動作をシミュレートするAzure VM。
+i18n:
+  sourceHash: a6b0490fd7e8
+  translator: machine
+---
+
+CDN シミュレーターは、CDN エッジノードのように動作するよう設定された NGINX を実行する Azure VM です。リアルなベンダー固有のヘッダーを挿入し、F5 Distributed Cloud との CDN 統合デモ用にキャッシュ動作をシミュレートします。
+
+## シミュレート対象ベンダー
+
+- Akamai
+- Cloudflare
+- Amazon CloudFront
+- Fastly
+- Azure Front Door
+
+nginx 設定、ベンダーヘッダー、terraform 変数、デプロイの詳細については、[CDN シミュレーターのドキュメント](https://f5xc-salesdemos.github.io/cdn-simulator/)を参照してください。

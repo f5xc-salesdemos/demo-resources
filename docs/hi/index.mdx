@@ -1,0 +1,42 @@
+---
+title: डेमो संसाधन
+description: >-
+  F5 Distributed Cloud डेमो वातावरण के लिए पूर्व-कॉन्फ़िगर Azure VM घटकों की
+  सूची। प्रत्येक घटक एक Terraform-डिप्लॉय करने योग्य VM है जिसमें
+  उद्देश्य-निर्मित सॉफ़्टवेयर पूर्व-स्थापित है।
+template: splash
+hero:
+  title: Demo Resources
+  tagline: >-
+    Pre-configured Azure VM components for F5 Distributed Cloud demo
+    environments.
+i18n:
+  sourceHash: e31fa3682fd9
+  translator: machine
+---
+
+import { CardGrid } from '@astrojs/starlight/components';
+import LinkCard from '@f5xc-salesdemos/docs-theme/components/LinkCard.astro';
+
+## घटक
+
+<CardGrid>
+  <LinkCard
+    icon="f5xc:distributed-apps"
+    title="ऑरिजिन सर्वर"
+    description="WAF, API सुरक्षा, बॉट रक्षा, और क्लाइंट-साइड रक्षा परीक्षण के लिए कमजोर वेब एप्लिकेशन होस्ट करने वाला Azure VM।"
+    href="/demo-resources/origin-server/"
+  />
+  <LinkCard
+    icon="f5xc:application-traffic-insight"
+    title="ट्रैफ़िक जनरेटर"
+    description="F5 XC संरक्षित एप्लिकेशन के विरुद्ध अटैक ट्रैफ़िक, रिकॉनसन्स, और बॉट सिमुलेशन उत्पन्न करने वाला Azure VM।"
+    href="/demo-resources/traffic-generator/"
+  />
+  <LinkCard
+    icon="f5xc:content-delivery-network"
+    title="CDN सिमुलेटर"
+    description="CDN इंटीग्रेशन डेमो के लिए मल्टी-वेंडर हेडर इंजेक्शन के साथ CDN एज व्यवहार का अनुकरण करने वाला Azure VM।"
+    href="/demo-resources/cdn-simulator/"
+  />
+</CardGrid>

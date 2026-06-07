@@ -1,0 +1,23 @@
+---
+title: Serveur d'origine
+description: >-
+  VM Azure hébergeant des applications web vulnérables pour les tests de WAF,
+  sécurité API, défense contre les bots et défense côté client.
+i18n:
+  sourceHash: 659623ed22bd
+  translator: machine
+---
+
+Le serveur d'origine est une VM Azure qui héberge des applications web vulnérables derrière
+un reverse proxy nginx. Il fournit des cibles pour démontrer les fonctionnalités de sécurité
+de F5 Distributed Cloud.
+
+## Fonctionnalités F5 XC validées
+
+- **Web Application Firewall** — Injection SQL, XSS, injection de commandes, traversée de chemin
+- **Sécurité API** — Vulnérabilités des API REST et GraphQL, OWASP API Top 10
+- **Défense contre les bots** — Cibles de bourrage d'identifiants, points de terminaison de scraping
+- **Défense côté client** — Injection JavaScript, attaques de type Magecart
+
+Consultez la [documentation du serveur d'origine](https://f5xc-salesdemos.github.io/origin-server/)
+pour l'architecture, les applications, les variables Terraform et les détails de déploiement.

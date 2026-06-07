@@ -1,0 +1,22 @@
+---
+title: CDN Simulator
+description: >-
+  Machine virtuelle Azure simulant le comportement d'un nœud CDN edge avec
+  injection d'en-têtes multi-fournisseurs pour les démonstrations d'intégration
+  CDN.
+i18n:
+  sourceHash: a6b0490fd7e8
+  translator: machine
+---
+
+Le simulateur CDN est une machine virtuelle Azure exécutant NGINX, configurée pour se comporter comme un nœud edge CDN. Il injecte des en-têtes réalistes spécifiques à chaque fournisseur et simule le comportement de mise en cache pour les démonstrations d'intégration CDN avec F5 Distributed Cloud.
+
+## Fournisseurs simulés
+
+- Akamai
+- Cloudflare
+- Amazon CloudFront
+- Fastly
+- Azure Front Door
+
+Consultez la [documentation du simulateur CDN](https://f5xc-salesdemos.github.io/cdn-simulator/) pour la configuration nginx, les en-têtes des fournisseurs, les variables terraform et les détails de déploiement.

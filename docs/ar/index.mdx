@@ -1,0 +1,42 @@
+---
+title: موارد العروض التوضيحية
+description: >-
+  كتالوج مكونات أجهزة Azure الافتراضية المُعدّة مسبقاً لبيئات العروض التوضيحية
+  لـ F5 Distributed Cloud. كل مكون هو جهاز افتراضي قابل للنشر عبر Terraform مع
+  برامج مُصممة خصيصاً ومُثبتة مسبقاً.
+template: splash
+hero:
+  title: Demo Resources
+  tagline: >-
+    Pre-configured Azure VM components for F5 Distributed Cloud demo
+    environments.
+i18n:
+  sourceHash: e31fa3682fd9
+  translator: machine
+---
+
+import { CardGrid } from '@astrojs/starlight/components';
+import LinkCard from '@f5xc-salesdemos/docs-theme/components/LinkCard.astro';
+
+## المكونات
+
+<CardGrid>
+  <LinkCard
+    icon="f5xc:distributed-apps"
+    title="خادم الأصل"
+    description="جهاز Azure افتراضي يستضيف تطبيقات ويب ضعيفة لاختبار WAF وأمان API والحماية من الروبوتات والدفاع من جانب العميل."
+    href="/demo-resources/origin-server/"
+  />
+  <LinkCard
+    icon="f5xc:application-traffic-insight"
+    title="مولّد حركة المرور"
+    description="جهاز Azure افتراضي يولّد حركة مرور هجومية واستطلاع ومحاكاة روبوتات ضد التطبيقات المحمية بـ F5 XC."
+    href="/demo-resources/traffic-generator/"
+  />
+  <LinkCard
+    icon="f5xc:content-delivery-network"
+    title="محاكي CDN"
+    description="جهاز Azure افتراضي يحاكي سلوك حافة CDN مع حقن ترويسات متعددة المزودين لعروض تكامل CDN التوضيحية."
+    href="/demo-resources/cdn-simulator/"
+  />
+</CardGrid>

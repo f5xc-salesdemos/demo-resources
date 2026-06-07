@@ -1,0 +1,41 @@
+---
+title: 데모 리소스
+description: >-
+  F5 Distributed Cloud 데모 환경을 위한 사전 구성된 Azure VM 컴포넌트 카탈로그. 각 컴포넌트는 목적에 맞게 제작된
+  소프트웨어가 사전 설치된 Terraform 배포 가능한 VM입니다.
+template: splash
+hero:
+  title: Demo Resources
+  tagline: >-
+    Pre-configured Azure VM components for F5 Distributed Cloud demo
+    environments.
+i18n:
+  sourceHash: e31fa3682fd9
+  translator: machine
+---
+
+import { CardGrid } from '@astrojs/starlight/components';
+import LinkCard from '@f5xc-salesdemos/docs-theme/components/LinkCard.astro';
+
+## 컴포넌트
+
+<CardGrid>
+  <LinkCard
+    icon="f5xc:distributed-apps"
+    title="오리진 서버"
+    description="WAF, API 보안, 봇 방어 및 클라이언트 측 방어 테스트를 위한 취약한 웹 애플리케이션을 호스팅하는 Azure VM."
+    href="/demo-resources/origin-server/"
+  />
+  <LinkCard
+    icon="f5xc:application-traffic-insight"
+    title="트래픽 생성기"
+    description="F5 XC로 보호되는 애플리케이션에 대한 공격 트래픽, 정찰 및 봇 시뮬레이션을 생성하는 Azure VM."
+    href="/demo-resources/traffic-generator/"
+  />
+  <LinkCard
+    icon="f5xc:content-delivery-network"
+    title="CDN 시뮬레이터"
+    description="CDN 통합 데모를 위해 멀티 벤더 헤더 주입과 함께 CDN 엣지 동작을 시뮬레이션하는 Azure VM."
+    href="/demo-resources/cdn-simulator/"
+  />
+</CardGrid>

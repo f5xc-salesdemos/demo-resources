@@ -1,0 +1,66 @@
+---
+title: Übersicht
+description: >-
+  Was Demo-Ressourcen sind, wie Komponenten ausgewählt werden und gemeinsame
+  Azure-Voraussetzungen für die Bereitstellung.
+i18n:
+  sourceHash: 7388ef989783
+  translator: machine
+---
+
+Demo-Ressourcen sind vorkonfigurierte virtuelle Azure-Maschinen, die über Terraform bereitgestellt werden können.
+Jede Komponente ist eine eigenständige VM mit zweckgebundener Software, die beim ersten Start
+durch cloud-init installiert und konfiguriert wird.
+
+## Auswahl der Komponenten
+
+Komponenten sind Bausteine. Wählen Sie sie basierend auf den Anforderungen Ihrer Demo aus:
+
+- **Origin-Server** stellt verwundbare Webanwendungen bereit, die als Ziele für
+  F5 XC-Sicherheitsfunktionen dienen. Die meisten Demos benötigen diesen.
+- **Traffic-Generator** erzeugt Angriffs- und legitimen Datenverkehr gegen Ihre
+  Demo-Umgebung. Wird benötigt, um WAF-Wirksamkeit, Bot-Erkennung oder API-Schutz
+  zu demonstrieren.
+- **CDN-Simulator** platziert einen NGINX-basierten CDN-Edge zwischen Clients und Origin
+  und fügt herstellerspezifische Header ein. Wird für CDN-Integrationsdemos verwendet.
+
+## Gemeinsame Voraussetzungen
+
+Alle Komponenten erfordern:
+
+- Ein Azure-Abonnement mit Contributor-Zugriff
+- Terraform 1.5 oder höher
+- Azure CLI authentifiziert (`az login`)
+- Ein SSH-Schlüsselpaar (Standardpfad `~/.ssh/id_ed25519.pub`)
+
+## Bereitstellungsmuster
+
+Jede Komponente folgt dem gleichen Terraform-Workflow:
+
+1. Das Komponenten-Repository klonen
+2. `cd terraform/`
+3. `terraform.tfvars.example` nach `terraform.tfvars` kopieren und erforderliche Variablen setzen (`subscription_id` ist für alle erforderlich; einige Komponenten haben zusätzliche Pflichtangaben)
+4. `terraform init && terraform plan && terraform apply`
+5. Überprüfung über den Health-Check-Endpunkt der Komponente
+
+Ihre Deployer-Kennung wird automatisch aus Ihrem Azure AD-Konto aufgelöst und in alle Ressourcennamen eingebettet (z. B. `rg-origin-server-lab-rmordasiewicz`).
+
+## Komponentenübergreifende Integration
+
+Komponenten lassen sich zu vollständigen Demo-Umgebungen kombinieren:
+
+```
+Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Server
+                                     ▲
+                               CDN Simulator
+```
+
+**Bereitstellungsreihenfolge:**
+
+1. **Origin-Server** — zuerst bereitstellen, er hostet die Anwendungen, auf die alle anderen Komponenten abzielen
+2. **F5 XC HTTP Load Balancer** — konfigurieren Sie einen Origin-Pool, der auf die öffentliche IP des Origin-Servers zeigt, und erstellen Sie dann einen HTTP Load Balancer mit WAF-, Bot-Defense-, API-Security- oder Client-Side-Defense-Richtlinien
+3. **Traffic-Generator** und/oder **CDN-Simulator** — zuletzt bereitstellen, mit Verweis auf den FQDN des F5 XC Load Balancers
+
+Die Terraform-Variablen jeder Komponente referenzieren die Ausgaben zuvor bereitgestellter Komponenten. Siehe die Komponentendokumentation für spezifische Variablenanforderungen.
+
+Verwenden Sie den [Azure-Preisrechner](https://azure.microsoft.com/en-us/pricing/calculator/) für aktuelle Kostenschätzungen. Führen Sie `terraform destroy` aus, wenn das Lab nicht genutzt wird, um Kosten zu vermeiden.

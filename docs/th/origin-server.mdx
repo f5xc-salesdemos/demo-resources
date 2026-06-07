@@ -1,0 +1,23 @@
+---
+title: Origin Server
+description: >-
+  Azure VM hosting vulnerable web applications for WAF, API security, bot
+  defense, and client-side defense testing.
+i18n:
+  sourceHash: 659623ed22bd
+  translator: machine
+---
+
+Origin server เป็น Azure VM ที่โฮสต์เว็บแอปพลิเคชันที่มีช่องโหว่ไว้เบื้องหลัง
+nginx reverse proxy โดยเป็นเป้าหมายสำหรับการสาธิตฟีเจอร์ด้านความปลอดภัยของ F5 Distributed
+Cloud
+
+## ฟีเจอร์ F5 XC ที่ผ่านการตรวจสอบ
+
+- **Web Application Firewall** — SQL injection, XSS, command injection, path traversal
+- **API Security** — ช่องโหว่ของ REST และ GraphQL API, OWASP API Top 10
+- **Bot Defense** — เป้าหมายการโจมตี credential stuffing, scraping endpoints
+- **Client-Side Defense** — JavaScript injection, การโจมตีรูปแบบ Magecart
+
+ดู [เอกสาร Origin Server](https://f5xc-salesdemos.github.io/origin-server/)
+สำหรับสถาปัตยกรรม แอปพลิเคชัน ตัวแปร terraform และรายละเอียดการ deploy

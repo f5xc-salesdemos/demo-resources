@@ -1,0 +1,24 @@
+---
+title: Traffic Generator
+description: >-
+  Azure VM generating attack traffic, reconnaissance, and bot simulation against
+  F5 XC protected applications.
+i18n:
+  sourceHash: ee5e7f90e7ea
+  translator: machine
+---
+
+Traffic generator คือ Azure VM ที่สร้างทราฟฟิกโจมตี การสแกนสำรวจ
+และการจำลองบอทต่อ F5 Distributed Cloud HTTP load balancers โดย
+ใช้ตรวจสอบว่านโยบาย WAF, Bot Defense, API Security และ Client-Side Defense
+ได้รับการกำหนดค่าอย่างถูกต้อง
+
+## ฟีเจอร์ F5 XC ที่ได้รับการตรวจสอบ
+
+- **Web Application Firewall** — SQL injection, XSS, command injection, path traversal payloads
+- **Bot Defense** — การทำงานอัตโนมัติด้วย headless browser, credential stuffing, การ crawl อย่างรวดเร็ว
+- **API Security** — การโจมตี OWASP API Top 10, GraphQL abuse, parameter fuzzing
+- **Client-Side Defense** — การแทรก skimmer แบบ Magecart, DOM manipulation
+
+ดู[เอกสาร Traffic Generator](https://f5xc-salesdemos.github.io/traffic-generator/)
+สำหรับแคตตาล็อกเครื่องมือ ชุดทราฟฟิก ตัวแปร terraform และรายละเอียดการ deploy

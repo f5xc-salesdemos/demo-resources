@@ -1,0 +1,66 @@
+---
+title: Visão Geral
+description: >-
+  O que são recursos de demonstração, como selecionar componentes e
+  pré-requisitos compartilhados do Azure para implantação.
+i18n:
+  sourceHash: 7388ef989783
+  translator: machine
+---
+
+Recursos de demonstração são máquinas virtuais Azure pré-configuradas implantáveis via Terraform.
+Cada componente é uma VM independente com software específico instalado e configurado
+através do cloud-init na primeira inicialização.
+
+## Selecionando Componentes
+
+Componentes são blocos de construção. Selecione-os com base no que sua demonstração precisa:
+
+- **Servidor de origem** fornece aplicações web vulneráveis que servem como alvos para
+  recursos de segurança do F5 XC. A maioria das demonstrações precisa deste componente.
+- **Gerador de tráfego** produz tráfego de ataque e legítimo contra seu ambiente de
+  demonstração. Necessário ao demonstrar eficácia de WAF, detecção de bots ou proteção
+  de API.
+- **Simulador de CDN** posiciona uma borda CDN baseada em NGINX entre clientes e origem,
+  injetando cabeçalhos específicos do fornecedor. Usado para demonstrações de integração com CDN.
+
+## Pré-requisitos Compartilhados
+
+Todos os componentes requerem:
+
+- Uma assinatura Azure com acesso de contribuidor
+- Terraform 1.5 ou posterior
+- Azure CLI autenticado (`az login`)
+- Um par de chaves SSH (caminho padrão `~/.ssh/id_ed25519.pub`)
+
+## Padrão de Implantação
+
+Todo componente segue o mesmo fluxo de trabalho Terraform:
+
+1. Clone o repositório do componente
+2. `cd terraform/`
+3. Copie `terraform.tfvars.example` para `terraform.tfvars` e defina as variáveis obrigatórias (`subscription_id` é obrigatório para todos; alguns componentes possuem entradas obrigatórias adicionais)
+4. `terraform init && terraform plan && terraform apply`
+5. Verifique através do endpoint de health check do componente
+
+Seu identificador de implantador é resolvido automaticamente a partir da sua conta Azure AD e incorporado em todos os nomes de recursos (ex.: `rg-origin-server-lab-rmordasiewicz`).
+
+## Integração Entre Componentes
+
+Os componentes se combinam para criar ambientes de demonstração completos:
+
+```
+Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Server
+                                     ▲
+                               CDN Simulator
+```
+
+**Ordem de implantação:**
+
+1. **Servidor de origem** — implante primeiro, ele hospeda as aplicações que todos os outros componentes utilizam como alvo
+2. **Balanceador de carga HTTP do F5 XC** — configure um origin pool apontando para o IP público do servidor de origem, depois crie um balanceador de carga HTTP com políticas de WAF, Bot Defense, API Security ou Client-Side Defense
+3. **Gerador de tráfego** e/ou **Simulador de CDN** — implante por último, apontando para o FQDN do balanceador de carga do F5 XC
+
+As variáveis Terraform de cada componente referenciam as saídas dos componentes implantados anteriormente. Consulte a documentação do componente para requisitos específicos de variáveis.
+
+Use a [Calculadora de preços do Azure](https://azure.microsoft.com/en-us/pricing/calculator/) para estimativas de custos atuais. Execute `terraform destroy` quando o laboratório estiver ocioso para interromper as cobranças.

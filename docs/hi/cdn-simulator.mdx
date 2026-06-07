@@ -1,0 +1,23 @@
+---
+title: CDN सिम्युलेटर
+description: >-
+  CDN एकीकरण डेमो के लिए मल्टी-वेंडर हेडर इंजेक्शन के साथ CDN एज व्यवहार का
+  अनुकरण करने वाला Azure VM।
+i18n:
+  sourceHash: a6b0490fd7e8
+  translator: machine
+---
+
+CDN सिम्युलेटर एक Azure VM है जिसमें NGINX कॉन्फ़िगर किया गया है ताकि यह CDN
+एज नोड की तरह व्यवहार करे। यह यथार्थवादी वेंडर-विशिष्ट हेडर इंजेक्ट करता है और F5 Distributed Cloud के साथ CDN एकीकरण डेमो के लिए कैश
+व्यवहार का अनुकरण करता है।
+
+## अनुकरित वेंडर
+
+- Akamai
+- Cloudflare
+- Amazon CloudFront
+- Fastly
+- Azure Front Door
+
+nginx कॉन्फ़िगरेशन, वेंडर हेडर, terraform वेरिएबल्स और डिप्लॉयमेंट विवरण के लिए [CDN सिम्युलेटर दस्तावेज़ीकरण](https://f5xc-salesdemos.github.io/cdn-simulator/) देखें।

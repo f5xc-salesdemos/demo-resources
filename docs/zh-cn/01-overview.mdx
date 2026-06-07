@@ -1,0 +1,59 @@
+---
+title: 概述
+description: 演示资源是什么、如何选择组件，以及部署所需的共享 Azure 先决条件。
+i18n:
+  sourceHash: 7388ef989783
+  translator: machine
+---
+
+演示资源是可通过 Terraform 部署的预配置 Azure 虚拟机。
+每个组件都是独立的虚拟机，在首次启动时通过 cloud-init 安装和配置专用软件。
+
+## 选择组件
+
+组件是构建模块。请根据您的演示需求选择合适的组件：
+
+- **源站服务器**提供易受攻击的 Web 应用程序，作为 F5 XC 安全功能的攻击目标。大多数演示都需要此组件。
+- **流量生成器**针对您的演示环境生成攻击流量和合法流量。在演示 WAF 效能、机器人检测或 API 防护时需要此组件。
+- **CDN 模拟器**在客户端和源站之间放置一个基于 NGINX 的 CDN 边缘节点，注入特定供应商的请求头。用于 CDN 集成演示。
+
+## 共享先决条件
+
+所有组件都需要：
+
+- 具有参与者访问权限的 Azure 订阅
+- Terraform 1.5 或更高版本
+- 已通过身份验证的 Azure CLI（`az login`）
+- SSH 密钥对（默认路径 `~/.ssh/id_ed25519.pub`）
+
+## 部署模式
+
+每个组件都遵循相同的 Terraform 工作流：
+
+1. 克隆组件仓库
+2. `cd terraform/`
+3. 将 `terraform.tfvars.example` 复制为 `terraform.tfvars` 并设置必需变量（所有组件都需要 `subscription_id`；部分组件有额外的必需输入项）
+4. `terraform init && terraform plan && terraform apply`
+5. 通过组件的健康检查端点进行验证
+
+您的部署者标识符将从您的 Azure AD 账户自动解析，并嵌入到所有资源名称中（例如 `rg-origin-server-lab-rmordasiewicz`）。
+
+## 跨组件集成
+
+组件可以组合在一起创建完整的演示环境：
+
+```
+Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Server
+                                     ▲
+                               CDN Simulator
+```
+
+**部署顺序：**
+
+1. **源站服务器** — 首先部署，它托管所有其他组件所针对的应用程序
+2. **F5 XC HTTP 负载均衡器** — 配置指向源站服务器公共 IP 的源站池，然后创建带有 WAF、Bot Defense、API Security 或 Client-Side Defense 策略的 HTTP 负载均衡器
+3. **流量生成器**和/或 **CDN 模拟器** — 最后部署，指向 F5 XC 负载均衡器的 FQDN
+
+每个组件的 Terraform 变量引用先前已部署组件的输出。请参阅各组件文档了解具体的变量要求。
+
+使用 [Azure 定价计算器](https://azure.microsoft.com/en-us/pricing/calculator/) 获取当前的费用估算。实验闲置时请运行 `terraform destroy` 以停止计费。
