@@ -9,16 +9,16 @@ i18n:
 ---
 
 O gerador de tráfego é uma VM Azure que produz tráfego de ataque, varreduras de
-reconhecimento e simulação de bots contra balanceadores de carga HTTP do F5 Distributed Cloud. Ele
+reconhecimento e simulação de bots contra load balancers HTTP do F5 Distributed Cloud. Ele
 valida que as políticas de WAF, Bot Defense, API Security e Client-Side Defense
 estão configuradas corretamente.
 
 ## Funcionalidades do F5 XC Validadas
 
-- **Web Application Firewall** — payloads de injeção SQL, XSS, injeção de comandos, travessia de diretórios
-- **Bot Defense** — automação de navegador headless, credential stuffing, rastreamento rápido
-- **API Security** — ataques do OWASP API Top 10, abuso de GraphQL, fuzzing de parâmetros
+- **Web Application Firewall** — SQL injection, XSS, injeção de comandos, payloads de path traversal
+- **Bot Defense** — automação de navegador headless, credential stuffing, rastreamento acelerado
+- **API Security** — ataques OWASP API Top 10, abuso de GraphQL, fuzzing de parâmetros
 - **Client-Side Defense** — injeção de skimmer estilo Magecart, manipulação de DOM
 
 Consulte a [documentação do Gerador de Tráfego](https://f5xc-salesdemos.github.io/traffic-generator/)
-para catálogo de ferramentas, suítes de tráfego, variáveis do terraform e detalhes de implantação.
+para catálogo de ferramentas, suítes de tráfego, variáveis do Terraform e detalhes de implantação.

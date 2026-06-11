@@ -1,23 +1,23 @@
 ---
 title: เซิร์ฟเวอร์ต้นทาง
 description: >-
-  Azure VM ที่โฮสต์เว็บแอปพลิเคชันที่มีช่องโหว่สำหรับการทดสอบ WAF, ความปลอดภัย
-  API, การป้องกันบอท และการป้องกันฝั่งไคลเอนต์
+  Azure VM ที่โฮสต์แอปพลิเคชันเว็บที่มีช่องโหว่สำหรับการทดสอบ WAF, ความปลอดภัย
+  API, การป้องกัน bot และการป้องกันฝั่งไคลเอนต์
 i18n:
   sourceHash: 659623ed22bd
   translator: machine
 ---
 
-เซิร์ฟเวอร์ต้นทางเป็น Azure VM ที่โฮสต์เว็บแอปพลิเคชันที่มีช่องโหว่อยู่เบื้องหลัง
-nginx reverse proxy โดยให้เป้าหมายสำหรับสาธิตฟีเจอร์ด้านความปลอดภัยของ F5 Distributed
+เซิร์ฟเวอร์ต้นทางคือ Azure VM ที่โฮสต์แอปพลิเคชันเว็บที่มีช่องโหว่โดยอยู่เบื้องหลัง
+nginx reverse proxy โดยให้เป้าหมายสำหรับการสาธิตคุณสมบัติความปลอดภัยของ F5 Distributed
 Cloud
 
-## ฟีเจอร์ F5 XC ที่ได้รับการตรวจสอบ
+## คุณสมบัติ F5 XC ที่ได้รับการตรวจสอบ
 
-- **Web Application Firewall** — SQL injection, XSS, command injection, path traversal
-- **ความปลอดภัย API** — ช่องโหว่ของ REST และ GraphQL API, OWASP API Top 10
-- **การป้องกันบอท** — เป้าหมายสำหรับ credential stuffing, endpoint สำหรับการ scraping
-- **การป้องกันฝั่งไคลเอนต์** — JavaScript injection, การโจมตีแบบ Magecart
+- **ไฟร์วอลล์แอปเว็บ (WAF)** — SQL injection, XSS, command injection, path traversal
+- **ความปลอดภัย API** — ช่องโหว่ REST และ GraphQL API, OWASP API Top 10
+- **การป้องกัน Bot** — เป้าหมาย credential stuffing, scraping endpoints
+- **การป้องกันฝั่งไคลเอนต์** — JavaScript injection, การโจมตีในรูปแบบ Magecart
 
-ดู [เอกสารเซิร์ฟเวอร์ต้นทาง](https://f5xc-salesdemos.github.io/origin-server/)
-สำหรับสถาปัตยกรรม, แอปพลิเคชัน, ตัวแปร terraform และรายละเอียดการ deploy
+ดู[เอกสาร เซิร์ฟเวอร์ต้นทาง](https://f5xc-salesdemos.github.io/origin-server/)
+สำหรับสถาปัตยกรรม, แอปพลิเคชัน, ตัวแปร terraform และรายละเอียดการติดตั้ง

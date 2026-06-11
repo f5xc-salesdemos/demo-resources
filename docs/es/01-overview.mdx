@@ -2,29 +2,29 @@
 title: Descripción general
 description: >-
   Qué son los recursos de demostración, cómo seleccionar componentes y los
-  prerrequisitos compartidos de Azure para el despliegue.
+  prerrequisitos compartidos de Azure para la implementación.
 i18n:
   sourceHash: 7388ef989783
   translator: machine
 ---
 
-Los recursos de demostración son máquinas virtuales de Azure preconfiguradas que se despliegan mediante Terraform.
-Cada componente es una VM independiente con software específico instalado y configurado
+Los recursos de demostración son máquinas virtuales de Azure preconfiguradas e implementables mediante Terraform.
+Cada componente es una VM independiente con software diseñado para un propósito específico, instalado y configurado
 a través de cloud-init en el primer arranque.
 
-## Selección de componentes
+## Selección de Componentes
 
-Los componentes son bloques de construcción. Selecciónelos según lo que necesite su demostración:
+Los componentes son bloques de construcción. Selecciónelos según las necesidades de su demostración:
 
-- **Servidor de origen** proporciona aplicaciones web vulnerables que sirven como objetivos para
-  las funcionalidades de seguridad de F5 XC. La mayoría de las demostraciones lo necesitan.
-- **Generador de tráfico** produce tráfico de ataque y legítimo contra su entorno
-  de demostración. Necesario al demostrar la eficacia del WAF, la detección de bots o la
+- **El servidor de origen** proporciona aplicaciones web vulnerables que sirven como objetivos para
+  las funciones de seguridad de F5 XC. La mayoría de las demostraciones lo requieren.
+- **El generador de tráfico** produce tráfico de ataque y tráfico legítimo contra su entorno
+  de demostración. Es necesario cuando se demuestra la eficacia del WAF, la detección de bots o la
   protección de API.
-- **Simulador de CDN** coloca un borde CDN basado en NGINX entre los clientes y el origen,
-  inyectando encabezados específicos del proveedor. Se utiliza para demostraciones de integración con CDN.
+- **El simulador CDN** coloca un edge CDN basado en NGINX entre los clientes y el origen,
+  inyectando encabezados específicos del proveedor. Se utiliza para demostraciones de integración CDN.
 
-## Prerrequisitos compartidos
+## Prerrequisitos Compartidos
 
 Todos los componentes requieren:
 
@@ -33,19 +33,19 @@ Todos los componentes requieren:
 - Azure CLI autenticado (`az login`)
 - Un par de claves SSH (ruta predeterminada `~/.ssh/id_ed25519.pub`)
 
-## Patrón de despliegue
+## Patrón de Implementación
 
 Cada componente sigue el mismo flujo de trabajo de Terraform:
 
 1. Clone el repositorio del componente
 2. `cd terraform/`
-3. Copie `terraform.tfvars.example` a `terraform.tfvars` y establezca las variables requeridas (`subscription_id` es obligatorio para todos; algunos componentes tienen entradas requeridas adicionales)
+3. Copie `terraform.tfvars.example` a `terraform.tfvars` y establezca las variables requeridas (`subscription_id` es obligatorio para todos; algunos componentes tienen entradas adicionales requeridas)
 4. `terraform init && terraform plan && terraform apply`
-5. Verifique mediante el endpoint de comprobación de estado del componente
+5. Verifique a través del endpoint de verificación de salud del componente
 
-Su identificador de desplegador se resuelve automáticamente a partir de su cuenta de Azure AD y se incorpora en todos los nombres de recursos (por ejemplo, `rg-origin-server-lab-rmordasiewicz`).
+Su identificador de implementador se resuelve automáticamente desde su cuenta de Azure AD y se incorpora en todos los nombres de recursos (p. ej., `rg-origin-server-lab-rmordasiewicz`).
 
-## Integración entre componentes
+## Integración entre Componentes
 
 Los componentes se combinan para crear entornos de demostración completos:
 
@@ -55,12 +55,12 @@ Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Ser
                                CDN Simulator
 ```
 
-**Orden de despliegue:**
+**Orden de implementación:**
 
-1. **Servidor de origen** — despliéguelo primero, aloja las aplicaciones que todos los demás componentes utilizan como objetivo
-2. **Balanceador de carga HTTP de F5 XC** — configure un origin pool apuntando a la IP pública del servidor de origen, luego cree un balanceador de carga HTTP con políticas de WAF, Bot Defense, API Security o Client-Side Defense
-3. **Generador de tráfico** y/o **Simulador de CDN** — despliéguelos en último lugar, apuntando al FQDN del balanceador de carga de F5 XC
+1. **Servidor de origen** — impleméntelo primero, ya que aloja las aplicaciones a las que apuntan todos los demás componentes
+2. **Balanceador de carga HTTP de F5 XC** — configure un grupo de origen apuntando a la IP pública del servidor de origen, luego cree un balanceador de carga HTTP con políticas de Firewall de aplicaciones web (WAF), Defensa Bot, Seguridad de API o Defensa del lado del cliente
+3. **Generador de tráfico** y/o **Simulador CDN** — impleméntelos al final, apuntando al FQDN del balanceador de carga de F5 XC
 
-Las variables de Terraform de cada componente hacen referencia a las salidas de los componentes desplegados previamente. Consulte la documentación del componente para los requisitos específicos de variables.
+Las variables de Terraform de cada componente hacen referencia a las salidas de los componentes implementados previamente. Consulte la documentación del componente para conocer los requisitos específicos de las variables.
 
-Utilice la [calculadora de precios de Azure](https://azure.microsoft.com/en-us/pricing/calculator/) para obtener estimaciones de costos actualizadas. Ejecute `terraform destroy` cuando el laboratorio esté inactivo para detener los cargos.
+Utilice la [calculadora de precios de Azure](https://azure.microsoft.com/en-us/pricing/calculator/) para obtener estimaciones de costos actuales. Ejecute `terraform destroy` cuando el laboratorio esté inactivo para detener los cargos.

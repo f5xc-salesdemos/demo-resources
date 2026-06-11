@@ -1,20 +1,23 @@
 ---
 title: Ursprungsserver
 description: >-
-  Azure-VM, die verwundbare Webanwendungen für WAF-, API-Sicherheits-,
-  Bot-Abwehr- und Client-seitige Schutztests hostet.
+  Azure VM, die anfällige Webanwendungen für WAF-, API-Sicherheits-, Bot-Abwehr-
+  und clientseitige Abwehrtests hostet.
 i18n:
   sourceHash: 659623ed22bd
   translator: machine
 ---
 
-Der Ursprungsserver ist eine Azure-VM, die verwundbare Webanwendungen hinter einem nginx-Reverse-Proxy hostet. Er stellt Ziele zur Demonstration der Sicherheitsfunktionen von F5 Distributed Cloud bereit.
+Der Ursprungsserver ist eine Azure VM, die anfällige Webanwendungen hinter
+einem nginx-Reverse-Proxy hostet. Er stellt Ziele für die Demonstration von
+F5 Distributed Cloud-Sicherheitsfunktionen bereit.
 
 ## Validierte F5 XC-Funktionen
 
-- **Web Application Firewall** — SQL-Injection, XSS, Command-Injection, Path-Traversal
+- **Web-App-Firewall (WAF)** — SQL-Injection, XSS, Befehlsinjektion, Pfadüberquerung
 - **API-Sicherheit** — REST- und GraphQL-API-Schwachstellen, OWASP API Top 10
 - **Bot-Abwehr** — Credential-Stuffing-Ziele, Scraping-Endpunkte
-- **Client-seitiger Schutz** — JavaScript-Injection, Magecart-artige Angriffe
+- **Clientseitige Abwehr** — JavaScript-Injection, Magecart-ähnliche Angriffe
 
-Weitere Informationen zu Architektur, Anwendungen, Terraform-Variablen und Bereitstellungsdetails finden Sie in der [Dokumentation des Ursprungsservers](https://f5xc-salesdemos.github.io/origin-server/).
+Siehe die [Ursprungsserver-Dokumentation](https://f5xc-salesdemos.github.io/origin-server/)
+für Architektur, Anwendungen, Terraform-Variablen und Bereitstellungsdetails.

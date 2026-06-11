@@ -12,16 +12,16 @@ Demo-Ressourcen sind vorkonfigurierte virtuelle Azure-Maschinen, die über Terra
 Jede Komponente ist eine eigenständige VM mit zweckgebundener Software, die beim ersten Start
 über cloud-init installiert und konfiguriert wird.
 
-## Auswahl der Komponenten
+## Komponenten auswählen
 
 Komponenten sind Bausteine. Wählen Sie sie basierend auf den Anforderungen Ihrer Demo aus:
 
-- **Origin-Server** stellt verwundbare Webanwendungen bereit, die als Ziele für
-  F5 XC-Sicherheitsfunktionen dienen. Die meisten Demos benötigen diesen.
-- **Traffic-Generator** erzeugt Angriffs- und legitimen Datenverkehr gegen Ihre
-  Demo-Umgebung. Wird benötigt, wenn WAF-Wirksamkeit, Bot-Erkennung oder API-Schutz
-  demonstriert werden soll.
-- **CDN-Simulator** platziert einen NGINX-basierten CDN-Edge zwischen Clients und Origin
+- **Ursprungsserver** stellt anfällige Webanwendungen bereit, die als Ziele für
+  F5 XC-Sicherheitsfunktionen dienen. Die meisten Demos benötigen diese Komponente.
+- **Datenverkehrsgenerator** erzeugt Angriffs- und legitimen Datenverkehr gegen Ihre Demo-
+  Umgebung. Wird benötigt, wenn die Wirksamkeit der Web-App-Firewall (WAF), Bot-Erkennung oder API-
+  Schutz demonstriert wird.
+- **CDN-Simulator** platziert einen NGINX-basierten CDN-Edge zwischen Clients und Ursprungsserver
   und fügt anbieterspezifische Header ein. Wird für CDN-Integrationsdemos verwendet.
 
 ## Gemeinsame Voraussetzungen
@@ -29,25 +29,25 @@ Komponenten sind Bausteine. Wählen Sie sie basierend auf den Anforderungen Ihre
 Alle Komponenten erfordern:
 
 - Ein Azure-Abonnement mit Contributor-Zugriff
-- Terraform 1.5 oder neuer
-- Authentifizierte Azure CLI (`az login`)
+- Terraform 1.5 oder höher
+- Azure CLI authentifiziert (`az login`)
 - Ein SSH-Schlüsselpaar (Standardpfad `~/.ssh/id_ed25519.pub`)
 
 ## Bereitstellungsmuster
 
-Jede Komponente folgt dem gleichen Terraform-Workflow:
+Jede Komponente folgt demselben Terraform-Workflow:
 
 1. Das Komponenten-Repository klonen
 2. `cd terraform/`
 3. `terraform.tfvars.example` nach `terraform.tfvars` kopieren und erforderliche Variablen setzen (`subscription_id` ist für alle erforderlich; einige Komponenten haben zusätzliche Pflichtangaben)
 4. `terraform init && terraform plan && terraform apply`
-5. Über den Health-Check-Endpunkt der Komponente verifizieren
+5. Überprüfung über den Health-Check-Endpunkt der Komponente
 
-Ihre Deployer-Kennung wird automatisch aus Ihrem Azure AD-Konto aufgelöst und in alle Ressourcennamen eingebettet (z. B. `rg-origin-server-lab-rmordasiewicz`).
+Ihre Bereitsteller-Kennung wird automatisch aus Ihrem Azure AD-Konto aufgelöst und in alle Ressourcennamen eingebettet (z. B. `rg-origin-server-lab-rmordasiewicz`).
 
 ## Komponentenübergreifende Integration
 
-Komponenten werden kombiniert, um vollständige Demo-Umgebungen zu erstellen:
+Komponenten lassen sich kombinieren, um vollständige Demo-Umgebungen zu erstellen:
 
 ```
 Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Server
@@ -57,10 +57,10 @@ Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Ser
 
 **Bereitstellungsreihenfolge:**
 
-1. **Origin-Server** — zuerst bereitstellen, er hostet die Anwendungen, auf die alle anderen Komponenten abzielen
-2. **F5 XC HTTP Load Balancer** — konfigurieren Sie einen Origin-Pool, der auf die öffentliche IP des Origin-Servers verweist, und erstellen Sie dann einen HTTP Load Balancer mit WAF-, Bot Defense-, API Security- oder Client-Side Defense-Richtlinien
-3. **Traffic-Generator** und/oder **CDN-Simulator** — zuletzt bereitstellen, mit Verweis auf den FQDN des F5 XC Load Balancers
+1. **Ursprungsserver** — zuerst bereitstellen, da er die Anwendungen hostet, auf die alle anderen Komponenten abzielen
+2. **F5 XC HTTP-Lastverteiler** — einen Ursprungspool konfigurieren, der auf die öffentliche IP des Ursprungsservers verweist, dann einen HTTP-Lastverteiler mit Web-App-Firewall (WAF), Bot-Abwehr erweitert, API-Sicherheit oder Clientseitige Abwehr-Richtlinien erstellen
+3. **Datenverkehrsgenerator** und/oder **CDN-Simulator** — zuletzt bereitstellen, mit Verweis auf den F5 XC Lastverteiler-FQDN
 
-Die Terraform-Variablen jeder Komponente referenzieren die Ausgaben zuvor bereitgestellter Komponenten. Weitere Informationen zu spezifischen Variablenanforderungen finden Sie in der Komponentendokumentation.
+Die Terraform-Variablen jeder Komponente referenzieren die Ausgaben zuvor bereitgestellter Komponenten. Spezifische Variablenanforderungen sind in der jeweiligen Komponentendokumentation beschrieben.
 
 Verwenden Sie den [Azure-Preisrechner](https://azure.microsoft.com/en-us/pricing/calculator/) für aktuelle Kostenschätzungen. Führen Sie `terraform destroy` aus, wenn das Lab nicht genutzt wird, um Kosten zu vermeiden.

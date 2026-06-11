@@ -1,14 +1,14 @@
 ---
 title: CDN 模拟器
-description: Azure 虚拟机模拟 CDN 边缘行为，通过多供应商头部注入实现 CDN 集成演示。
+description: Azure VM 模拟 CDN 边缘行为，支持多厂商标头注入，用于 CDN 集成演示。
 i18n:
   sourceHash: a6b0490fd7e8
   translator: machine
 ---
 
-CDN 模拟器是一台运行 NGINX 的 Azure 虚拟机，配置为模拟 CDN 边缘节点的行为。它注入真实的供应商特定头部，并为 F5 Distributed Cloud 的 CDN 集成演示模拟缓存行为。
+CDN 模拟器是一台运行 NGINX 的 Azure VM，配置为模拟 CDN 边缘节点的行为。它注入真实的厂商特定标头，并模拟缓存行为，用于与 F5 Distributed Cloud 的 CDN 集成演示。
 
-## 模拟的供应商
+## 模拟厂商
 
 - Akamai
 - Cloudflare
@@ -16,4 +16,4 @@ CDN 模拟器是一台运行 NGINX 的 Azure 虚拟机，配置为模拟 CDN 边
 - Fastly
 - Azure Front Door
 
-请参阅 [CDN 模拟器文档](https://f5xc-salesdemos.github.io/cdn-simulator/) 了解 nginx 配置、供应商头部、terraform 变量和部署详情。
+有关 nginx 配置、厂商标头、terraform 变量及部署详情，请参阅 [CDN 模拟器文档](https://f5xc-salesdemos.github.io/cdn-simulator/)。

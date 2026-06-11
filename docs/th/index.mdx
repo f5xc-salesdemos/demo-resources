@@ -1,15 +1,15 @@
 ---
 title: ทรัพยากรสาธิต
 description: >-
-  แคตตาล็อกของคอมโพเนนต์ Azure VM ที่กำหนดค่าไว้ล่วงหน้าสำหรับสภาพแวดล้อมสาธิต
-  F5 Distributed Cloud แต่ละคอมโพเนนต์เป็น VM ที่สามารถปรับใช้ได้ด้วย Terraform
-  พร้อมซอฟต์แวร์ที่สร้างขึ้นเฉพาะทางติดตั้งไว้ล่วงหน้า
+  แคตตาล็อกของส่วนประกอบ Azure VM ที่กำหนดค่าล่วงหน้าสำหรับสภาพแวดล้อมสาธิต F5
+  Distributed Cloud แต่ละส่วนประกอบคือ VM ที่สามารถปรับใช้ด้วย Terraform
+  พร้อมซอฟต์แวร์ที่สร้างขึ้นเพื่อวัตถุประสงค์เฉพาะที่ติดตั้งไว้ล่วงหน้า
 template: splash
 hero:
   title: ทรัพยากรสาธิต
   tagline: >-
-    คอมโพเนนต์ Azure VM ที่กำหนดค่าไว้ล่วงหน้าสำหรับสภาพแวดล้อมสาธิต F5
-    Distributed Cloud
+    ส่วนประกอบ Azure VM ที่กำหนดค่าล่วงหน้าสำหรับสภาพแวดล้อมสาธิต F5 Distributed
+    Cloud
 i18n:
   sourceHash: e31fa3682fd9
   translator: machine
@@ -18,25 +18,25 @@ i18n:
 import { CardGrid } from '@astrojs/starlight/components';
 import LinkCard from '@f5xc-salesdemos/docs-theme/components/LinkCard.astro';
 
-## คอมโพเนนต์
+## ส่วนประกอบ
 
 <CardGrid>
   <LinkCard
     icon="f5xc:distributed-apps"
     title="Origin Server"
-    description="Azure VM ที่โฮสต์เว็บแอปพลิเคชันที่มีช่องโหว่สำหรับการทดสอบ WAF, ความปลอดภัย API, การป้องกันบอท และการป้องกันฝั่งไคลเอนต์"
+    description="Azure VM ที่โฮสต์เว็บแอปพลิเคชันที่มีช่องโหว่สำหรับการทดสอบ WAF, ความปลอดภัย API, การป้องกัน Bot และการป้องกันฝั่งไคลเอนต์"
     href="/demo-resources/origin-server/"
   />
   <LinkCard
     icon="f5xc:application-traffic-insight"
     title="Traffic Generator"
-    description="Azure VM ที่สร้างทราฟฟิกโจมตี การสำรวจ และการจำลองบอทต่อแอปพลิเคชันที่ได้รับการป้องกันโดย F5 XC"
+    description="Azure VM ที่สร้างทราฟฟิกโจมตี การลาดตระเวน และการจำลอง Bot เพื่อโจมตีแอปพลิเคชันที่ได้รับการป้องกันโดย F5 XC"
     href="/demo-resources/traffic-generator/"
   />
   <LinkCard
     icon="f5xc:content-delivery-network"
     title="CDN Simulator"
-    description="Azure VM ที่จำลองพฤติกรรม CDN edge พร้อมการแทรกเฮดเดอร์แบบหลายผู้ให้บริการสำหรับการสาธิตการรวม CDN"
+    description="Azure VM ที่จำลองพฤติกรรม CDN edge พร้อมการแทรก header แบบหลายผู้จำหน่ายสำหรับการสาธิตการผสานรวม CDN"
     href="/demo-resources/cdn-simulator/"
   />
 </CardGrid>

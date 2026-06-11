@@ -1,24 +1,24 @@
 ---
-title: Generatore di Traffico
+title: Generatore di traffico
 description: >-
-  VM Azure che genera traffico di attacco, ricognizione e simulazione di bot
-  contro applicazioni protette da F5 XC.
+  VM Azure che genera traffico di attacco, ricognizione e simulazione bot contro
+  applicazioni protette da F5 XC.
 i18n:
   sourceHash: ee5e7f90e7ea
   translator: machine
 ---
 
 Il generatore di traffico è una VM Azure che produce traffico di attacco, scansioni
-di ricognizione e simulazione di bot contro i bilanciatori di carico HTTP di F5 Distributed Cloud. Verifica
-che le policy WAF, Bot Defense, API Security e Client-Side Defense
+di ricognizione e simulazione bot contro i load balancer HTTP di F5 Distributed Cloud. Consente di
+verificare che le policy WAF, la Difesa Bot, la Sicurezza API e la Difesa lato client
 siano configurate correttamente.
 
 ## Funzionalità F5 XC Validate
 
-- **Web Application Firewall** — payload di SQL injection, XSS, command injection, path traversal
-- **Bot Defense** — automazione con browser headless, credential stuffing, crawling rapido
-- **API Security** — attacchi OWASP API Top 10, abuso di GraphQL, fuzzing dei parametri
-- **Client-Side Defense** — iniezione di skimmer in stile Magecart, manipolazione del DOM
+- **Firewall per applicazioni web (WAF)** — payload di SQL injection, XSS, command injection e path traversal
+- **Difesa Bot** — automazione con browser headless, credential stuffing, crawling rapido
+- **Sicurezza API** — attacchi OWASP API Top 10, abuso GraphQL, parameter fuzzing
+- **Difesa lato client** — iniezione di skimmer in stile Magecart, manipolazione del DOM
 
-Consultare la [documentazione del Generatore di Traffico](https://f5xc-salesdemos.github.io/traffic-generator/)
-per il catalogo degli strumenti, le suite di traffico, le variabili terraform e i dettagli di distribuzione.
+Consultare la [documentazione del Generatore di traffico](https://f5xc-salesdemos.github.io/traffic-generator/)
+per il catalogo degli strumenti, le suite di traffico, le variabili Terraform e i dettagli di distribuzione.

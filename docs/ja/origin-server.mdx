@@ -1,18 +1,18 @@
 ---
 title: オリジンサーバー
-description: WAF、APIセキュリティ、ボット防御、クライアントサイド防御のテスト用に脆弱なWebアプリケーションをホストするAzure VM。
+description: WAF、API セキュリティ、Bot 防御、クライアントサイド防御のテスト用に脆弱な Web アプリケーションをホストする Azure VM。
 i18n:
   sourceHash: 659623ed22bd
   translator: machine
 ---
 
-オリジンサーバーは、nginx リバースプロキシの背後で脆弱な Web アプリケーションをホストする Azure VM です。F5 Distributed Cloud のセキュリティ機能をデモンストレーションするためのターゲットを提供します。
+オリジンサーバーは、nginx リバースプロキシの背後に脆弱な Web アプリケーションをホストする Azure VM です。F5 Distributed Cloud のセキュリティ機能のデモ用ターゲットを提供します。
 
-## 検証される F5 XC 機能
+## 検証済み F5 XC 機能
 
-- **Web アプリケーションファイアウォール** — SQLインジェクション、XSS、コマンドインジェクション、パストラバーサル
+- **Web アプリファイアウォール (WAF)** — SQL インジェクション、XSS、コマンドインジェクション、パストラバーサル
 - **API セキュリティ** — REST および GraphQL API の脆弱性、OWASP API Top 10
-- **ボット防御** — クレデンシャルスタッフィングのターゲット、スクレイピングエンドポイント
+- **Bot 防御** — クレデンシャルスタッフィングターゲット、スクレイピングエンドポイント
 - **クライアントサイド防御** — JavaScript インジェクション、Magecart スタイルの攻撃
 
-アーキテクチャ、アプリケーション、Terraform 変数、デプロイの詳細については、[オリジンサーバーのドキュメント](https://f5xc-salesdemos.github.io/origin-server/)を参照してください。
+アーキテクチャ、アプリケーション、Terraform 変数、およびデプロイの詳細については、[オリジンサーバーのドキュメント](https://f5xc-salesdemos.github.io/origin-server/)を参照してください。

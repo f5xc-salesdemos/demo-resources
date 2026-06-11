@@ -1,13 +1,15 @@
 ---
-title: Risorse Demo
+title: Risorse demo
 description: >-
-  Catalogo di componenti VM Azure preconfigurati per ambienti demo F5
-  Distributed Cloud. Ogni componente è una VM distribuibile con Terraform con
-  software dedicato preinstallato.
+  Catalogo di componenti Azure VM preconfigurati per ambienti demo di F5
+  Distributed Cloud. Ogni componente è una VM distribuibile tramite Terraform
+  con software specifico preinstallato.
 template: splash
 hero:
-  title: Risorse Demo
-  tagline: Componenti VM Azure preconfigurati per ambienti demo F5 Distributed Cloud.
+  title: Risorse demo
+  tagline: >-
+    Componenti Azure VM preconfigurati per ambienti demo di F5 Distributed
+    Cloud.
 i18n:
   sourceHash: e31fa3682fd9
   translator: machine
@@ -21,20 +23,20 @@ import LinkCard from '@f5xc-salesdemos/docs-theme/components/LinkCard.astro';
 <CardGrid>
   <LinkCard
     icon="f5xc:distributed-apps"
-    title="Server di Origine"
-    description="VM Azure che ospita applicazioni web vulnerabili per test di WAF, sicurezza API, difesa dai bot e difesa lato client."
+    title="Server di origine"
+    description="Azure VM che ospita applicazioni web vulnerabili per il testing di WAF, sicurezza API, difesa bot e difesa lato client."
     href="/demo-resources/origin-server/"
   />
   <LinkCard
     icon="f5xc:application-traffic-insight"
-    title="Generatore di Traffico"
-    description="VM Azure che genera traffico di attacco, ricognizione e simulazione bot contro applicazioni protette da F5 XC."
+    title="Generatore di traffico"
+    description="Azure VM che genera traffico di attacco, ricognizione e simulazione bot contro le applicazioni protette da F5 XC."
     href="/demo-resources/traffic-generator/"
   />
   <LinkCard
     icon="f5xc:content-delivery-network"
     title="Simulatore CDN"
-    description="VM Azure che simula il comportamento edge CDN con iniezione di header multi-vendor per demo di integrazione CDN."
+    description="Azure VM che simula il comportamento degli edge CDN con iniezione di header multi-vendor per demo di integrazione CDN."
     href="/demo-resources/cdn-simulator/"
   />
 </CardGrid>

@@ -2,8 +2,8 @@
 title: डेमो संसाधन
 description: >-
   F5 Distributed Cloud डेमो वातावरण के लिए पूर्व-कॉन्फ़िगर Azure VM घटकों की
-  सूची। प्रत्येक घटक एक Terraform-डिप्लॉय करने योग्य VM है जिसमें
-  उद्देश्य-निर्मित सॉफ़्टवेयर पूर्व-स्थापित है।
+  सूची। प्रत्येक घटक एक Terraform-तैनाती योग्य VM है जिसमें उद्देश्य-निर्मित
+  सॉफ़्टवेयर पूर्व-स्थापित है।
 template: splash
 hero:
   title: डेमो संसाधन
@@ -21,20 +21,20 @@ import LinkCard from '@f5xc-salesdemos/docs-theme/components/LinkCard.astro';
 <CardGrid>
   <LinkCard
     icon="f5xc:distributed-apps"
-    title="ऑरिजिन सर्वर"
-    description="WAF, API सुरक्षा, बॉट डिफेंस, और क्लाइंट-साइड डिफेंस परीक्षण के लिए कमजोर वेब एप्लिकेशन होस्ट करने वाली Azure VM।"
+    title="Origin Server"
+    description="Azure VM जो WAF, API सुरक्षा, bot रक्षा, और क्लाइंट-साइड डिफेंस परीक्षण के लिए संवेदनशील वेब एप्लिकेशन होस्ट करता है।"
     href="/demo-resources/origin-server/"
   />
   <LinkCard
     icon="f5xc:application-traffic-insight"
-    title="ट्रैफिक जनरेटर"
-    description="F5 XC संरक्षित एप्लिकेशन के विरुद्ध अटैक ट्रैफिक, रिकॉनसेंस, और बॉट सिमुलेशन उत्पन्न करने वाली Azure VM।"
+    title="Traffic Generator"
+    description="Azure VM जो F5 XC संरक्षित एप्लिकेशन के विरुद्ध अटैक ट्रैफ़िक, टोही, और bot सिम्युलेशन उत्पन्न करता है।"
     href="/demo-resources/traffic-generator/"
   />
   <LinkCard
     icon="f5xc:content-delivery-network"
-    title="CDN सिम्युलेटर"
-    description="CDN इंटीग्रेशन डेमो के लिए मल्टी-वेंडर हेडर इंजेक्शन के साथ CDN एज व्यवहार का अनुकरण करने वाली Azure VM।"
+    title="CDN Simulator"
+    description="Azure VM जो CDN इंटीग्रेशन डेमो के लिए मल्टी-वेंडर हेडर इंजेक्शन के साथ CDN एज व्यवहार का अनुकरण करता है।"
     href="/demo-resources/cdn-simulator/"
   />
 </CardGrid>

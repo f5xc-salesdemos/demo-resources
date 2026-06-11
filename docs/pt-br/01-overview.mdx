@@ -8,44 +8,43 @@ i18n:
   translator: machine
 ---
 
-Recursos de demonstração são máquinas virtuais Azure pré-configuradas, implantáveis via Terraform.
+Os recursos de demonstração são máquinas virtuais Azure pré-configuradas, implantáveis via Terraform.
 Cada componente é uma VM independente com software específico instalado e configurado
-por meio do cloud-init na primeira inicialização.
+por meio de cloud-init na primeira inicialização.
 
 ## Selecionando Componentes
 
-Componentes são blocos de construção. Selecione-os com base nas necessidades da sua demonstração:
+Os componentes são blocos de construção. Selecione-os com base nas necessidades da sua demonstração:
 
 - **Servidor de origem** fornece aplicações web vulneráveis que servem como alvos para
-  os recursos de segurança do F5 XC. A maioria das demonstrações precisa disso.
-- **Gerador de tráfego** produz tráfego de ataque e tráfego legítimo contra seu ambiente
-  de demonstração. Necessário ao demonstrar eficácia de WAF, detecção de bots ou proteção
-  de API.
-- **Simulador de CDN** posiciona um edge de CDN baseado em NGINX entre clientes e origem,
-  injetando cabeçalhos específicos do fornecedor. Usado para demonstrações de integração com CDN.
+  os recursos de segurança do F5 XC. A maioria das demonstrações necessita deste componente.
+- **Gerador de tráfego** produz tráfego de ataque e legítimo contra o seu ambiente de
+  demonstração. Necessário para demonstrar a eficácia do WAF, detecção de bots ou proteção de API.
+- **Simulador de CDN** posiciona uma borda CDN baseada em NGINX entre os clientes e a origem,
+  injetando cabeçalhos específicos de fornecedor. Utilizado para demonstrações de integração com CDN.
 
 ## Pré-requisitos Compartilhados
 
 Todos os componentes requerem:
 
-- Uma assinatura Azure com acesso de contribuidor
+- Uma assinatura Azure com acesso de colaborador
 - Terraform 1.5 ou posterior
 - Azure CLI autenticado (`az login`)
 - Um par de chaves SSH (caminho padrão `~/.ssh/id_ed25519.pub`)
 
 ## Padrão de Implantação
 
-Cada componente segue o mesmo fluxo de trabalho Terraform:
+Cada componente segue o mesmo fluxo de trabalho do Terraform:
 
 1. Clone o repositório do componente
 2. `cd terraform/`
-3. Copie `terraform.tfvars.example` para `terraform.tfvars` e defina as variáveis obrigatórias (`subscription_id` é obrigatório para todos; alguns componentes possuem entradas obrigatórias adicionais)
+3. Copie `terraform.tfvars.example` para `terraform.tfvars` e defina as variáveis obrigatórias (`subscription_id` é obrigatório para todos; alguns componentes possuem entradas adicionais obrigatórias)
 4. `terraform init && terraform plan && terraform apply`
-5. Verifique por meio do endpoint de verificação de saúde do componente
+5. Verifique através do endpoint de verificação de integridade do componente
 
-Seu identificador de implantador é resolvido automaticamente a partir da sua conta Azure AD e incorporado em todos os nomes de recursos (ex.: `rg-origin-server-lab-rmordasiewicz`).
+O identificador do implantador é resolvido automaticamente a partir da sua conta do Azure AD e incorporado em todos os nomes de recursos (ex.: `rg-origin-server-lab-rmordasiewicz`).
 
-## Integração entre Componentes
+## Integração Entre Componentes
 
 Os componentes se combinam para criar ambientes de demonstração completos:
 
@@ -57,10 +56,10 @@ Traffic Generator ──► F5 XC HTTP LB (WAF/Bot/API/CSD) ──► Origin Ser
 
 **Ordem de implantação:**
 
-1. **Servidor de origem** — implante primeiro, ele hospeda as aplicações que todos os outros componentes utilizam como alvo
-2. **Balanceador de carga HTTP F5 XC** — configure um origin pool apontando para o IP público do servidor de origem, depois crie um balanceador de carga HTTP com políticas de WAF, Bot Defense, API Security ou Client-Side Defense
-3. **Gerador de tráfego** e/ou **Simulador de CDN** — implante por último, apontando para o FQDN do balanceador de carga F5 XC
+1. **Servidor de origem** — implante primeiro, pois hospeda as aplicações que todos os outros componentes utilizam como alvo
+2. **Balanceador de carga HTTP do F5 XC** — configure um pool de origem apontando para o IP público do servidor de origem, em seguida crie um balanceador de carga HTTP com políticas de WAF, Bot Defense, API Security ou Client-Side Defense
+3. **Gerador de tráfego** e/ou **simulador de CDN** — implante por último, apontando para o FQDN do balanceador de carga do F5 XC
 
 As variáveis Terraform de cada componente referenciam as saídas dos componentes implantados anteriormente. Consulte a documentação do componente para requisitos específicos de variáveis.
 
-Use a [calculadora de preços do Azure](https://azure.microsoft.com/en-us/pricing/calculator/) para estimativas de custo atuais. Execute `terraform destroy` quando o laboratório estiver ocioso para interromper as cobranças.
+Utilize a [calculadora de preços do Azure](https://azure.microsoft.com/en-us/pricing/calculator/) para estimativas de custo atuais. Execute `terraform destroy` quando o laboratório estiver inativo para interromper as cobranças.

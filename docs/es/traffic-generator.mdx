@@ -1,5 +1,5 @@
 ---
-title: Generador de Tráfico
+title: Generador de tráfico
 description: >-
   VM de Azure que genera tráfico de ataque, reconocimiento y simulación de bots
   contra aplicaciones protegidas por F5 XC.
@@ -9,16 +9,14 @@ i18n:
 ---
 
 El generador de tráfico es una VM de Azure que produce tráfico de ataque, escaneos
-de reconocimiento y simulación de bots contra los balanceadores de carga HTTP de F5 Distributed Cloud. Valida
-que las políticas de WAF, Bot Defense, API Security y Client-Side Defense
-estén configuradas correctamente.
+de reconocimiento y simulación de bots contra balanceadores de carga HTTP de F5 Distributed Cloud. Valida que las políticas de Firewall de aplicaciones web (WAF), Defensa Bot, Seguridad de API y Defensa del lado del cliente estén correctamente configuradas.
 
-## Características de F5 XC Validadas
+## Funcionalidades de F5 XC validadas
 
-- **Web Application Firewall** — cargas útiles de inyección SQL, XSS, inyección de comandos y traversal de rutas
-- **Bot Defense** — automatización de navegadores headless, credential stuffing, rastreo rápido
-- **API Security** — ataques OWASP API Top 10, abuso de GraphQL, fuzzing de parámetros
-- **Client-Side Defense** — inyección de skimmers estilo Magecart, manipulación del DOM
+- **Firewall de aplicaciones web** — inyección SQL, XSS, inyección de comandos, cargas útiles de path traversal
+- **Defensa Bot** — automatización de navegadores sin interfaz gráfica, relleno de credenciales, rastreo acelerado
+- **Seguridad de API** — ataques OWASP API Top 10, abuso de GraphQL, fuzzing de parámetros
+- **Defensa del lado del cliente** — inyección de skimmer estilo Magecart, manipulación del DOM
 
-Consulte la [documentación del Generador de Tráfico](https://f5xc-salesdemos.github.io/traffic-generator/)
-para el catálogo de herramientas, suites de tráfico, variables de terraform y detalles de despliegue.
+Consulte la [documentación del Generador de tráfico](https://f5xc-salesdemos.github.io/traffic-generator/)
+para el catálogo de herramientas, suites de tráfico, variables de Terraform y detalles de implementación.

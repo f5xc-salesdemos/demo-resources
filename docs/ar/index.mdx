@@ -1,15 +1,15 @@
 ---
 title: موارد العرض التوضيحي
 description: >-
-  كتالوج مكونات أجهزة Azure الافتراضية المُعدّة مسبقاً لبيئات العرض التوضيحي لـ
-  F5 Distributed Cloud. كل مكون عبارة عن جهاز افتراضي قابل للنشر عبر Terraform
-  مع برامج مُصممة خصيصاً ومُثبتة مسبقاً.
+  كتالوج مكونات Azure VM المُهيأة مسبقاً لبيئات العرض التوضيحي لـ F5 Distributed
+  Cloud. كل مكوّن عبارة عن VM قابل للنشر عبر Terraform مع برامج مُثبَّتة مسبقاً
+  لأغراض محددة.
 template: splash
 hero:
   title: موارد العرض التوضيحي
   tagline: >-
-    مكونات أجهزة Azure الافتراضية المُعدّة مسبقاً لبيئات العرض التوضيحي لـ F5
-    Distributed Cloud.
+    مكونات Azure VM المُهيأة مسبقاً لبيئات العرض التوضيحي لـ F5 Distributed
+    Cloud.
 i18n:
   sourceHash: e31fa3682fd9
   translator: machine
@@ -23,20 +23,20 @@ import LinkCard from '@f5xc-salesdemos/docs-theme/components/LinkCard.astro';
 <CardGrid>
   <LinkCard
     icon="f5xc:distributed-apps"
-    title="خادم الأصل"
-    description="جهاز Azure افتراضي يستضيف تطبيقات ويب معرضة للثغرات لاختبار WAF وأمان API والحماية من الروبوتات والحماية من جانب العميل."
+    title="Origin Server"
+    description="Azure VM hosting vulnerable web applications for WAF, API security, bot defense, and client-side defense testing."
     href="/demo-resources/origin-server/"
   />
   <LinkCard
     icon="f5xc:application-traffic-insight"
-    title="مولّد حركة المرور"
-    description="جهاز Azure افتراضي يولّد حركة مرور هجومية واستطلاعية ومحاكاة روبوتات ضد التطبيقات المحمية بـ F5 XC."
+    title="Traffic Generator"
+    description="Azure VM generating attack traffic, reconnaissance, and bot simulation against F5 XC protected applications."
     href="/demo-resources/traffic-generator/"
   />
   <LinkCard
     icon="f5xc:content-delivery-network"
-    title="محاكي CDN"
-    description="جهاز Azure افتراضي يحاكي سلوك حافة CDN مع حقن رؤوس متعددة المزوّدين لعروض تكامل CDN التوضيحية."
+    title="CDN Simulator"
+    description="Azure VM simulating CDN edge behavior with multi-vendor header injection for CDN integration demos."
     href="/demo-resources/cdn-simulator/"
   />
 </CardGrid>

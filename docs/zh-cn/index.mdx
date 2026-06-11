@@ -1,12 +1,12 @@
 ---
 title: 演示资源
 description: >-
-  用于 F5 Distributed Cloud 演示环境的预配置 Azure VM 组件目录。每个组件都是一个可通过 Terraform 部署的
-  VM，预装了专用软件。
+  适用于 F5 Distributed Cloud 演示环境的预配置 Azure VM 组件目录。每个组件均为可通过 Terraform
+  部署的虚拟机，并预装了专用软件。
 template: splash
 hero:
   title: 演示资源
-  tagline: 用于 F5 Distributed Cloud 演示环境的预配置 Azure VM 组件。
+  tagline: 适用于 F5 Distributed Cloud 演示环境的预配置 Azure VM 组件。
 i18n:
   sourceHash: e31fa3682fd9
   translator: machine
@@ -21,19 +21,19 @@ import LinkCard from '@f5xc-salesdemos/docs-theme/components/LinkCard.astro';
   <LinkCard
     icon="f5xc:distributed-apps"
     title="源服务器"
-    description="托管易受攻击的 Web 应用程序的 Azure VM，用于 WAF、API 安全、Bot 防御和客户端防御测试。"
+    description="托管存在漏洞的 Web 应用程序的 Azure VM，用于 WAF、API 安全、机器人防御和客户端防御测试。"
     href="/demo-resources/origin-server/"
   />
   <LinkCard
     icon="f5xc:application-traffic-insight"
     title="流量生成器"
-    description="生成针对 F5 XC 保护应用程序的攻击流量、侦察和 Bot 模拟的 Azure VM。"
+    description="针对受 F5 XC 保护的应用程序生成攻击流量、侦察行为和机器人模拟的 Azure VM。"
     href="/demo-resources/traffic-generator/"
   />
   <LinkCard
     icon="f5xc:content-delivery-network"
     title="CDN 模拟器"
-    description="模拟 CDN 边缘行为并注入多供应商头部信息的 Azure VM，用于 CDN 集成演示。"
+    description="模拟 CDN 边缘行为并支持多厂商标头注入的 Azure VM，用于 CDN 集成演示。"
     href="/demo-resources/cdn-simulator/"
   />
 </CardGrid>

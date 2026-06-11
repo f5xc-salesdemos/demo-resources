@@ -1,18 +1,18 @@
 ---
 title: 流量生成器
-description: Azure 虚拟机，针对 F5 XC 保护的应用程序生成攻击流量、侦察扫描和机器人模拟。
+description: Azure VM 针对 F5 XC 受保护应用程序生成攻击流量、侦察扫描和机器人模拟。
 i18n:
   sourceHash: ee5e7f90e7ea
   translator: machine
 ---
 
-流量生成器是一个 Azure 虚拟机，用于针对 F5 Distributed Cloud HTTP 负载均衡器生成攻击流量、侦察扫描和机器人模拟。它用于验证 WAF 策略、Bot Defense、API Security 和 Client-Side Defense 是否已正确配置。
+流量生成器是一台 Azure VM，用于针对 F5 Distributed Cloud HTTP 负载均衡器产生攻击流量、侦察扫描和机器人模拟。它可验证 WAF 策略、Bot 防护、API 安全以及客户端防护是否已正确配置。
 
-## 验证的 F5 XC 功能
+## 已验证的 F5 XC 功能
 
-- **Web 应用程序防火墙** — SQL 注入、XSS、命令注入、路径遍历载荷
-- **Bot Defense** — 无头浏览器自动化、凭据填充、快速爬取
-- **API Security** — OWASP API Top 10 攻击、GraphQL 滥用、参数模糊测试
-- **Client-Side Defense** — Magecart 风格的窃取脚本注入、DOM 操控
+- **Web 应用防火墙** — SQL 注入、XSS、命令注入、路径遍历载荷
+- **Bot 防护** — 无头浏览器自动化、凭据填充、快速爬取
+- **API 安全** — OWASP API Top 10 攻击、GraphQL 滥用、参数模糊测试
+- **客户端防护** — Magecart 风格的信息窃取脚本注入、DOM 操纵
 
-请参阅[流量生成器文档](https://f5xc-salesdemos.github.io/traffic-generator/)，了解工具目录、流量套件、Terraform 变量和部署详情。
+请参阅[流量生成器文档](https://f5xc-salesdemos.github.io/traffic-generator/)，了解工具目录、流量套件、Terraform 变量及部署详情。

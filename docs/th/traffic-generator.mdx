@@ -1,24 +1,24 @@
 ---
-title: เครื่องสร้างทราฟฟิก
+title: ตัวสร้างทราฟฟิก
 description: >-
-  Azure VM ที่สร้างทราฟฟิกโจมตี การสแกนสำรวจ และการจำลองบอต
+  Azure VM ที่สร้างทราฟฟิกโจมตี การสอดแนม และการจำลอง Bot
   เพื่อทดสอบแอปพลิเคชันที่ได้รับการปกป้องโดย F5 XC
 i18n:
   sourceHash: ee5e7f90e7ea
   translator: machine
 ---
 
-เครื่องสร้างทราฟฟิกเป็น Azure VM ที่สร้างทราฟฟิกโจมตี การสแกนสำรวจ
-และการจำลองบอต เพื่อทดสอบ HTTP load balancers ของ F5 Distributed Cloud โดย
-ใช้ตรวจสอบว่านโยบาย WAF, Bot Defense, API Security และ Client-Side Defense
+ตัวสร้างทราฟฟิกคือ Azure VM ที่ผลิตทราฟฟิกโจมตี การสแกนสอดแนม
+และการจำลอง Bot เพื่อทดสอบกับ F5 Distributed Cloud HTTP load balancer โดยใช้ในการ
+ตรวจสอบว่านโยบาย WAF, การป้องกัน Bot, ความปลอดภัย API และการป้องกันฝั่งไคลเอนต์
 ได้รับการกำหนดค่าอย่างถูกต้อง
 
 ## ฟีเจอร์ F5 XC ที่ได้รับการตรวจสอบ
 
-- **Web Application Firewall** — เพย์โหลด SQL injection, XSS, command injection, path traversal
-- **Bot Defense** — การทำงานอัตโนมัติด้วย headless browser, credential stuffing, การ crawl อย่างรวดเร็ว
-- **API Security** — การโจมตี OWASP API Top 10, การใช้งาน GraphQL ในทางที่ผิด, parameter fuzzing
-- **Client-Side Defense** — การแทรก skimmer แบบ Magecart, การจัดการ DOM
+- **ไฟร์วอลล์แอปเว็บ (WAF)** — SQL injection, XSS, command injection, เพย์โหลด path traversal
+- **การป้องกัน Bot** — การทำงานอัตโนมัติด้วย headless browser, credential stuffing, การ crawling อย่างรวดเร็ว
+- **ความปลอดภัย API** — การโจมตี OWASP API Top 10, การละเมิด GraphQL, parameter fuzzing
+- **การป้องกันฝั่งไคลเอนต์** — การฉีด skimmer แบบ Magecart, การจัดการ DOM
 
-ดู[เอกสารเครื่องสร้างทราฟฟิก](https://f5xc-salesdemos.github.io/traffic-generator/)
-สำหรับรายการเครื่องมือ ชุดทราฟฟิก ตัวแปร terraform และรายละเอียดการติดตั้ง
+ดู[เอกสาร ตัวสร้างทราฟฟิก](https://f5xc-salesdemos.github.io/traffic-generator/)
+สำหรับแคตตาล็อกเครื่องมือ, ชุดทราฟฟิก, ตัวแปร Terraform และรายละเอียดการปรับใช้งาน

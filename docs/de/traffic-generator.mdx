@@ -1,20 +1,23 @@
 ---
-title: Traffic-Generator
+title: Datenverkehrsgenerator
 description: >-
-  Azure-VM, die Angriffsverkehr, Aufklärungsscans und Bot-Simulationen gegen
-  durch F5 XC geschützte Anwendungen erzeugt.
+  Azure-VM, die Angriffsdatenverkehr, Aufklärungsscans und Bot-Simulationen
+  gegen F5 XC-geschützte Anwendungen erzeugt.
 i18n:
   sourceHash: ee5e7f90e7ea
   translator: machine
 ---
 
-Der Traffic-Generator ist eine Azure-VM, die Angriffsverkehr, Aufklärungsscans und Bot-Simulationen gegen F5 Distributed Cloud HTTP-Load-Balancer erzeugt. Er überprüft, ob WAF-Richtlinien, Bot Defense, API Security und Client-Side Defense korrekt konfiguriert sind.
+Der Datenverkehrsgenerator ist eine Azure-VM, die Angriffsdatenverkehr, Aufklärungsscans
+und Bot-Simulationen gegen F5 Distributed Cloud HTTP-Load-Balancer erzeugt. Er
+überprüft, ob WAF-Richtlinien, Bot-Abwehr, API-Sicherheit und clientseitige Abwehr
+korrekt konfiguriert sind.
 
 ## Validierte F5 XC-Funktionen
 
-- **Web Application Firewall** — SQL-Injection, XSS, Command-Injection, Path-Traversal-Payloads
-- **Bot Defense** — Headless-Browser-Automatisierung, Credential Stuffing, schnelles Crawling
-- **API Security** — OWASP API Top 10-Angriffe, GraphQL-Missbrauch, Parameter-Fuzzing
-- **Client-Side Defense** — Magecart-artige Skimmer-Injection, DOM-Manipulation
+- **Web-App-Firewall (WAF)** — SQL-Injection, XSS, Command-Injection, Path-Traversal-Payloads
+- **Bot-Abwehr** — Headless-Browser-Automatisierung, Credential-Stuffing, schnelles Crawling
+- **API-Sicherheit** — OWASP API Top 10-Angriffe, GraphQL-Missbrauch, Parameter-Fuzzing
+- **Clientseitige Abwehr** — Magecart-ähnliche Skimmer-Injection, DOM-Manipulation
 
-Weitere Informationen finden Sie in der [Traffic-Generator-Dokumentation](https://f5xc-salesdemos.github.io/traffic-generator/) mit Tool-Katalog, Traffic-Suiten, Terraform-Variablen und Bereitstellungsdetails.
+Weitere Informationen zu Werkzeugkatalog, Datenverkehrs-Suites, Terraform-Variablen und Bereitstellungsdetails finden Sie in der [Dokumentation des Datenverkehrsgenerators](https://f5xc-salesdemos.github.io/traffic-generator/).
