@@ -6,18 +6,10 @@
 
 Catalog of pre-configured Azure VM components for F5 XC demo environments
 
+
 ## Documentation
 
 Full documentation is available at **[https://f5xc-salesdemos.github.io/demo-resources/](https://f5xc-salesdemos.github.io/demo-resources/)**.
-
-## Getting Started
-
-```bash
-git clone https://github.com/f5xc-salesdemos/demo-resources.git
-```
-
-See the [documentation](https://f5xc-salesdemos.github.io/demo-resources/) for detailed setup
-and usage guides.
 
 ## Contributing
 
