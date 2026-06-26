@@ -1,17 +1,17 @@
 [
   {
     "label": "Origin Server",
-    "url": "https://f5xc-salesdemos.github.io/origin-server/llms.txt",
+    "url": "https://f5-sales-demo.github.io/origin-server/llms.txt",
     "description": "Azure VM hosting vulnerable web applications for WAF, API security, bot defense, and client-side defense testing"
   },
   {
     "label": "Traffic Generator",
-    "url": "https://f5xc-salesdemos.github.io/traffic-generator/llms.txt",
+    "url": "https://f5-sales-demo.github.io/traffic-generator/llms.txt",
     "description": "Azure VM generating attack traffic, reconnaissance, and bot simulation against F5 XC protected applications"
   },
   {
     "label": "CDN Simulator",
-    "url": "https://f5xc-salesdemos.github.io/cdn-simulator/llms.txt",
+    "url": "https://f5-sales-demo.github.io/cdn-simulator/llms.txt",
     "description": "NGINX-based CDN edge node simulator for multi-vendor lab environments"
   }
 ]
